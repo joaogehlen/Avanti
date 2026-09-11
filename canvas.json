@@ -1,0 +1,23 @@
+{
+  "artboards": [
+    { "file": "Main.dc.html", "x": 0, "y": 0, "w": 1440, "h": 8600, "title": "Site — desktop", "expand": "fill" },
+    { "file": "Mobile.dc.html", "x": 1600, "y": 0, "w": 390, "h": 7200, "title": "Site — celular (tema claro)" }
+  ],
+  "annotations": [
+    {
+      "id": "sobre-o-rascunho",
+      "x": -340,
+      "y": 0,
+      "w": 280,
+      "text": "AVANTI — one-page\n\nPaleta tirada da própria marca: roxo #A509FA e fundo #0B0916 do padrão de grafite. Tipografia Space Grotesk + Manrope.\n\nO hero e o bloco final usam o FUNDO.jpg e ficam escuros nos dois temas — é a arte da Avanti, não faz sentido clarear. O resto da página troca com o botão de sol/lua.\n\nLogo colorido no tema escuro, logo preto no claro."
+    },
+    {
+      "id": "o-que-falta",
+      "x": -340,
+      "y": 430,
+      "w": 280,
+      "text": "O QUE PRECISA DE VOCÊ\n\n1. CONFIRMAR O WHATSAPP. Todos os botões estão apontando para o número da Canecas Sul (51 99926-8517) porque é o único que eu tinha. Se a Avanti usa outro, é troca em 1 minuto — mas hoje é o maior risco da página.\n2. O @ do Instagram.\n3. [PRAZO DE PRODUÇÃO], [FORMAS DE PAGAMENTO] e [PRAZO DE RESPOSTA].\n4. As 3 avaliações do Google, copiadas na íntegra.\n5. Uma foto só de tirantes — hoje o card usa a foto da caneca com os tirantes em volta.\n\nJá entrou do briefing: CNPJ, endereço, +9 anos, +10 mil clientes, +400 mil produtos, as 4 garantias, as 5 vantagens e os 5 passos da compra — tudo na sua redação."
+    }
+  ],
+  "launch": { "view": "focused", "file": "Main.dc.html" }
+}

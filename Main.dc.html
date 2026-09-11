@@ -1,0 +1,614 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; }
+    body { margin: 0; }
+    .page {
+      --ff-display: 'Space Grotesk', 'Trebuchet MS', 'Helvetica Neue', sans-serif;
+      --ff-body: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--fg);
+      -webkit-font-smoothing: antialiased;
+      text-wrap: pretty;
+    }
+    .theme-dark {
+      --bg: #0B0916; --bg-2: #130F22; --bg-3: #1B1530;
+      --fg: #F5F2FA; --fg-2: #ADA4C2; --fg-3: #8B82A3;
+      --line: rgba(255,255,255,0.10); --line-2: rgba(255,255,255,0.18);
+      --accent: #A509FA; --accent-ink: #FFFFFF; --accent-text: #C081FF;
+      --accent-soft: rgba(165,9,250,0.16); --glow: rgba(165,9,250,0.34);
+    }
+    .theme-light {
+      --bg: #FAF8FF; --bg-2: #FFFFFF; --bg-3: #F1ECFA;
+      --fg: #14101F; --fg-2: #57506B; --fg-3: #6E6685;
+      --line: rgba(20,16,31,0.12); --line-2: rgba(20,16,31,0.20);
+      --accent: #8E05D6; --accent-ink: #FFFFFF; --accent-text: #7A00BC;
+      --accent-soft: rgba(142,5,214,0.10); --glow: rgba(142,5,214,0.22);
+    }
+    /* faixa de marca — sempre escura, é a arte da própria Avanti */
+    .brand-dark {
+      --bg: #0B0916; --bg-2: #130F22; --bg-3: #1B1530;
+      --fg: #F5F2FA; --fg-2: #ADA4C2; --fg-3: #8B82A3;
+      --line: rgba(255,255,255,0.10); --line-2: rgba(255,255,255,0.18);
+      --accent: #A509FA; --accent-ink: #FFFFFF; --accent-text: #C081FF;
+      --accent-soft: rgba(165,9,250,0.16); --glow: rgba(165,9,250,0.34);
+      color: #F5F2FA;
+    }
+    a { color: var(--accent-text); text-decoration: none; }
+    a:hover { color: var(--fg); }
+    .wrap { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 40px; }
+    .eyebrow { font-size: 12px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent-text); }
+    h1, h2, h3 { font-family: var(--ff-display); font-weight: 700; margin: 0; letter-spacing: -0.03em; line-height: 1.04; }
+    p { margin: 0; }
+    .btn { display: inline-flex; align-items: center; gap: 10px; min-height: 54px; padding: 0 28px; border-radius: 999px; font-family: var(--ff-body); font-size: 15px; font-weight: 700; letter-spacing: -0.01em; border: 1px solid transparent; cursor: pointer; }
+    .btn-primary { background: var(--accent); color: var(--accent-ink); box-shadow: 0 12px 34px -12px var(--glow); }
+    .btn-primary:hover { color: var(--accent-ink); filter: brightness(1.1); }
+    .btn-ghost { background: transparent; color: var(--fg); border-color: var(--line-2); }
+    .btn-ghost:hover { color: var(--fg); border-color: var(--accent); }
+    .card { background: var(--bg-2); border: 1px solid var(--line); border-radius: 20px; }
+    .grid { display: grid; gap: 20px; }
+    .g4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+    .g3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .g2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .shot { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .frame { position: relative; overflow: hidden; border-radius: 18px; background: var(--bg-3); }
+    .logo { display: block; height: 46px; width: auto; }
+    .theme-dark .logo-light, .brand-dark .logo-light { display: none; }
+    .theme-light .logo-dark { display: none; }
+    .brand-dark .logo-dark { display: block; }
+    .rule { height: 1px; background: var(--line); border: 0; margin: 0; }
+    @media (max-width: 1080px) {
+      .nav-main { display: none !important; }
+      .logo { height: 38px; }
+    }
+    @media (max-width: 1000px) {
+      .wrap { padding: 0 24px; }
+      .g4 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .g3 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .split, .hero-split { grid-template-columns: minmax(0, 1fr) !important; gap: 40px !important; }
+      .hero-split h1 { font-size: 46px !important; }
+      .stats-row { grid-template-columns: repeat(3, minmax(0, 1fr)) !important; }
+      .steps { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; gap: 28px 24px !important; }
+      .steps > div { padding: 20px 0 0 !important; }
+      .perks { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .footer-cols { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+      .gal > div { grid-column: span 1 !important; grid-row: span 1 !important; aspect-ratio: 4 / 3 !important; }
+    }
+    @media (max-width: 640px) {
+      .g4, .g3, .g2 { grid-template-columns: minmax(0, 1fr); }
+      .wrap { padding: 0 18px; }
+      h2 { font-size: 30px !important; }
+      .hero-split h1 { font-size: 34px !important; }
+      .hero-photo { height: 300px !important; }
+      .stats-row, .steps, .perks, .footer-cols { grid-template-columns: minmax(0, 1fr) !important; }
+      .stats-row > div { padding: 0 !important; border-left: 0 !important; }
+    }
+  </style>
+</helmet>
+
+<div class="page {{themeClass}}">
+
+  <div style="background: var(--bg-3); border-bottom: 1px solid var(--line);">
+    <div class="wrap" style="display: flex; align-items: center; justify-content: center; gap: 26px; flex-wrap: wrap; min-height: 42px; font-size: 12.5px; font-weight: 600; color: var(--fg-2);">
+      <span>Criação de arte 100% grátis</span>
+      <span style="color: var(--accent-text);">✦</span>
+      <span>Pedido mínimo de 10 unidades</span>
+      <span style="color: var(--accent-text);">✦</span>
+      <span>Enviamos para todo o Brasil</span>
+    </div>
+  </div>
+
+  <header style="position: sticky; top: 0; z-index: 20; background: var(--bg); border-bottom: 1px solid var(--line);">
+    <div class="wrap" style="display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 82px;">
+
+      <div style="display: flex; align-items: center;">
+        <img class="logo logo-dark" src="logo.png" alt="Avanti">
+        <img class="logo logo-light" src="logo-alt.png" alt="Avanti">
+      </div>
+
+      <nav class="nav-main" style="display: flex; align-items: center; gap: 28px; font-size: 14px; font-weight: 600;">
+        <a href="#produtos" style="color: var(--fg-2);">Produtos</a>
+        <a href="#trabalhos" style="color: var(--fg-2);">Trabalhos</a>
+        <a href="#garantias" style="color: var(--fg-2);">Garantias</a>
+        <a href="#processo" style="color: var(--fg-2);">Como funciona</a>
+        <a href="#faq" style="color: var(--fg-2);">Dúvidas</a>
+      </nav>
+
+      <div style="display: flex; align-items: center; gap: 12px;">
+        <button onClick="{{ toggleTheme }}" title="Alternar tema claro e escuro" aria-label="Alternar tema claro e escuro" style="display: grid; place-items: center; width: 44px; height: 44px; border-radius: 999px; background: var(--bg-3); border: 1px solid var(--line); color: var(--fg-2); cursor: pointer;">
+          <sc-if value="{{ isDark }}" hint-placeholder-val="{{ true }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"></path></svg>
+          </sc-if>
+          <sc-if value="{{ isLight }}" hint-placeholder-val="{{ false }}">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z"></path></svg>
+          </sc-if>
+        </button>
+        <a class="btn btn-primary" href="https://wa.me/5551999268517?text=Ol%C3%A1!%20Quero%20fazer%20um%20or%C3%A7amento%20com%20a%20Avanti." style="min-height: 46px; padding: 0 22px; font-size: 14px;">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Zm4.66 10.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.65.81-.79.98-.15.16-.29.18-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.11-.23-.17-.48-.29Z"></path></svg>
+          Faça seu orçamento
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO — fundo de marca, sempre escuro -->
+  <section class="brand-dark" style="position: relative; overflow: hidden; background-color: #0B0916; background-image: url(./fundo.jpg); background-size: 760px auto; background-repeat: repeat;">
+    <div style="position: absolute; inset: 0; background: linear-gradient(105deg, #0B0916 8%, rgba(11,9,22,0.90) 44%, rgba(11,9,22,0.62) 100%); pointer-events: none;"></div>
+    <div style="position: absolute; top: -180px; left: 12%; width: 620px; height: 620px; border-radius: 999px; background: radial-gradient(circle, var(--glow) 0%, transparent 68%); pointer-events: none;"></div>
+
+    <div class="wrap hero-split" style="position: relative; display: grid; grid-template-columns: minmax(0, 1.06fr) minmax(0, 0.94fr); gap: 56px; align-items: center; padding-top: 84px; padding-bottom: 84px;">
+
+      <div style="display: flex; flex-direction: column; align-items: flex-start; gap: 26px;">
+        <div style="display: inline-flex; align-items: center; gap: 9px; padding: 8px 16px; border-radius: 999px; background: var(--accent-soft); border: 1px solid rgba(165,9,250,0.45);">
+          <span style="width: 7px; height: 7px; border-radius: 999px; background: #A509FA;"></span>
+          <span style="font-size: 12.5px; font-weight: 700; color: #C081FF;">9 anos personalizando formaturas</span>
+        </div>
+
+        <h1 style="font-size: 60px; line-height: 1.0; letter-spacing: -0.04em;">
+          Personalizados que a turma usa <span style="color: #C081FF;">muito depois da formatura.</span>
+        </h1>
+
+        <p style="font-size: 18.5px; line-height: 1.55; color: #ADA4C2; max-width: 510px;">
+          Canecas, camisetas, moletons e tirantes para terceirão e formatura. A arte a gente cria de graça — você só aprova e recebe em casa.
+        </p>
+
+        <div style="display: flex; align-items: center; gap: 14px; flex-wrap: wrap;">
+          <a class="btn btn-primary" href="https://wa.me/5551999268517?text=Ol%C3%A1!%20Quero%20fazer%20um%20or%C3%A7amento%20com%20a%20Avanti.">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Zm4.66 10.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.65.81-.79.98-.15.16-.29.18-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.11-.23-.17-.48-.29Z"></path></svg>
+            Faça seu orçamento
+          </a>
+          <a class="btn btn-ghost" href="#trabalhos" style="color: #F5F2FA; border-color: rgba(255,255,255,0.28);">Ver trabalhos</a>
+        </div>
+
+        <p style="font-size: 13.5px; color: #8B82A3; line-height: 1.5;">
+          Sem compromisso · A arte vem antes de você pagar qualquer coisa
+        </p>
+      </div>
+
+      <div style="position: relative;">
+        <div class="frame hero-photo" style="height: 470px; border-radius: 22px; border: 1px solid rgba(255,255,255,0.14); box-shadow: 0 30px 70px -30px rgba(0,0,0,0.9);">
+          <img class="shot" src="moletom.jpg" alt="Turma com moletom e caneca personalizados da Avanti">
+        </div>
+        <div style="position: absolute; left: -22px; bottom: -22px; display: flex; flex-direction: column; gap: 2px; padding: 18px 22px; border-radius: 16px; background: #130F22; border: 1px solid rgba(165,9,250,0.45); box-shadow: 0 18px 40px -18px rgba(0,0,0,0.9);">
+          <span style="font-family: var(--ff-display); font-size: 26px; font-weight: 700; color: #F5F2FA; line-height: 1;">+400 mil</span>
+          <span style="font-size: 12px; font-weight: 600; color: #ADA4C2;">produtos enviados</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="position: relative; border-top: 1px solid rgba(255,255,255,0.10); background: rgba(11,9,22,0.72);">
+      <div class="wrap stats-row" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr));">
+        <div style="display: flex; flex-direction: column; gap: 5px; padding: 28px 28px 28px 0;">
+          <span style="font-family: var(--ff-display); font-size: 38px; font-weight: 700; letter-spacing: -0.035em; line-height: 1; color: #F5F2FA;">+9 anos</span>
+          <span style="font-size: 13.5px; font-weight: 600; color: #ADA4C2;">de experiência no mercado</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 5px; padding: 28px; border-left: 1px solid rgba(255,255,255,0.10);">
+          <span style="font-family: var(--ff-display); font-size: 38px; font-weight: 700; letter-spacing: -0.035em; line-height: 1; color: #F5F2FA;">+10 mil</span>
+          <span style="font-size: 13.5px; font-weight: 600; color: #ADA4C2;">clientes atendidos</span>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 5px; padding: 28px 0 28px 28px; border-left: 1px solid rgba(255,255,255,0.10);">
+          <span style="font-family: var(--ff-display); font-size: 38px; font-weight: 700; letter-spacing: -0.035em; line-height: 1; color: #F5F2FA;">+400 mil</span>
+          <span style="font-size: 13.5px; font-weight: 600; color: #ADA4C2;">produtos enviados</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRODUTOS -->
+  <section id="produtos" style="padding: 104px 0; background: var(--bg);">
+    <div class="wrap">
+      <div style="display: flex; align-items: flex-end; justify-content: space-between; gap: 40px; margin-bottom: 44px;">
+        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 620px;">
+          <span class="eyebrow">O que a gente personaliza</span>
+          <h2 style="font-size: 44px;">Uma arte só, o pacote inteiro da turma.</h2>
+          <p style="font-size: 16.5px; line-height: 1.6; color: var(--fg-2);">
+            Você fecha a arte uma vez e ela vai para tudo que a turma quiser levar — sem pagar criação de novo a cada peça.
+          </p>
+        </div>
+        <a class="btn btn-ghost" href="https://wa.me/5551999268517?text=Ol%C3%A1!%20Quero%20fazer%20um%20or%C3%A7amento%20com%20a%20Avanti." style="flex-shrink: 0;">Faça seu orçamento</a>
+      </div>
+
+      <div class="grid g4">
+        <div class="card" style="display: flex; flex-direction: column; overflow: hidden;">
+          <div class="frame" style="height: 230px; border-radius: 0;"><img class="shot" src="caneca2.jpg" alt="Caneca térmica personalizada"></div>
+          <div style="display: flex; flex-direction: column; gap: 9px; padding: 24px;">
+            <h3 style="font-size: 22px;">Canecas</h3>
+            <p style="font-size: 14.5px; line-height: 1.6; color: var(--fg-2);">Canecas térmicas com a arte da turma e o nome de cada formando impresso.</p>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; overflow: hidden;">
+          <div class="frame" style="height: 230px; border-radius: 0;"><img class="shot" src="camiseta.jpg" alt="Camiseta de terceirão personalizada"></div>
+          <div style="display: flex; flex-direction: column; gap: 9px; padding: 24px;">
+            <h3 style="font-size: 22px;">Camisetas</h3>
+            <p style="font-size: 14.5px; line-height: 1.6; color: var(--fg-2);">A arte no verso, o nome na frente e as assinaturas de todo mundo da turma.</p>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; overflow: hidden;">
+          <div class="frame" style="height: 230px; border-radius: 0;"><img class="shot" src="moletom2.jpg" alt="Moletom de formatura personalizado"></div>
+          <div style="display: flex; flex-direction: column; gap: 9px; padding: 24px;">
+            <h3 style="font-size: 22px;">Moletons</h3>
+            <p style="font-size: 14.5px; line-height: 1.6; color: var(--fg-2);">Capuz, arte grande nas costas e o nome de cada um. A peça que sobrevive ao ano.</p>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; overflow: hidden;">
+          <div class="frame" style="height: 230px; border-radius: 0;"><img class="shot" src="caneca.jpg" alt="Caneca e tirantes personalizados de terceirão"></div>
+          <div style="display: flex; flex-direction: column; gap: 9px; padding: 24px;">
+            <h3 style="font-size: 22px;">Tirantes</h3>
+            <p style="font-size: 14.5px; line-height: 1.6; color: var(--fg-2);">Impressos em cor, combinando com a caneca e com a identidade da turma.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- VANTAGENS -->
+  <section style="padding: 96px 0; background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+    <div class="wrap">
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 620px; margin-bottom: 46px;">
+        <span class="eyebrow">Por que fechar com a gente</span>
+        <h2 style="font-size: 44px;">O básico bem feito, sem novela.</h2>
+      </div>
+
+      <div class="perks" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 34px 40px;">
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15.5 4.5 19.5 8.5 9 19H5v-4L15.5 4.5Z"></path><path d="m13.5 6.5 4 4"></path></svg>
+          <h3 style="font-size: 19px;">Arte criada sem custo</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: var(--fg-2);">A gente transforma sua ideia em layout e você não paga nada a mais por isso. Zero custo, zero complicação.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8.5"></circle><path d="M12 7.5V12l3 2"></path></svg>
+          <h3 style="font-size: 19px;">Entrega no prazo</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: var(--fg-2);">Prazo aqui é coisa séria. Seu pedido chega direitinho na data combinada, sem novela.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 12.5c0 4-3.8 7.2-8.5 7.2-1 0-2-.15-2.9-.42L4 21l1.3-3.6C4.2 16.1 3.5 14.4 3.5 12.5c0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2Z"></path></svg>
+          <h3 style="font-size: 19px;">Atendimento humanizado</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: var(--fg-2);">Chega de falar com robô. Aqui você conversa com gente de verdade, pronta para te ouvir e ajudar.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 8.5h17V20h-17z"></path><path d="M3.5 8.5 12 4l8.5 4.5M12 4v16"></path></svg>
+          <h3 style="font-size: 19px;">Pedido mínimo de 10 unidades</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: var(--fg-2);">Com 10 unidades a gente já coloca a mão na massa. Turma pequena também tem vez.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 11px;">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7.5h11v9H2z"></path><path d="M13 10.5h4l3 3v3h-7z"></path><circle cx="6" cy="18" r="1.8"></circle><circle cx="17" cy="18" r="1.8"></circle></svg>
+          <h3 style="font-size: 19px;">Envio para todo o Brasil</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: var(--fg-2);">Não importa em qual canto do país você esteja, a gente faz o seu pedido chegar voando até aí.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 11px; justify-content: center; padding: 26px; border-radius: 18px; background: var(--accent-soft); border: 1px solid var(--line-2);">
+          <h3 style="font-size: 19px;">Ainda com dúvida?</h3>
+          <p style="font-size: 14.5px; line-height: 1.65; color: var(--fg-2);">Chama no WhatsApp. A gente monta o orçamento sem você se comprometer com nada.</p>
+          <a href="https://wa.me/5551999268517?text=Ol%C3%A1!%20Quero%20fazer%20um%20or%C3%A7amento%20com%20a%20Avanti." style="font-size: 14.5px; font-weight: 700;">Faça seu orçamento →</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRABALHOS -->
+  <section id="trabalhos" style="padding: 104px 0; background: var(--bg);">
+    <div class="wrap">
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 640px; margin-bottom: 44px;">
+        <span class="eyebrow">Trabalhos entregues</span>
+        <h2 style="font-size: 44px;">Turmas que já são Avanti.</h2>
+        <p style="font-size: 16.5px; line-height: 1.6; color: var(--fg-2);">
+          Cada arte é feita do zero para o grupo — o bicho, a piada interna, o ano, os nomes. Nada de catálogo pronto.
+        </p>
+      </div>
+
+      <div class="grid g3 gal" style="gap: 18px;">
+        <div class="frame" style="aspect-ratio: 8 / 5; grid-column: span 2;"><img class="shot" src="turma2.jpg" alt="Turma de formatura com canecas e tirantes Avanti"></div>
+        <div class="frame" style="aspect-ratio: 4 / 5; grid-row: span 2;"><img class="shot" src="caneca3.jpg" alt="Caneca térmica personalizada"></div>
+        <div class="frame" style="aspect-ratio: 4 / 3;"><img class="shot" src="camiseta2.jpg" alt="Camiseta de terceirão personalizada"></div>
+        <div class="frame" style="aspect-ratio: 4 / 3;"><img class="shot" src="moletom.jpg" alt="Dupla de moletons de formatura personalizados"></div>
+        <div class="frame" style="aspect-ratio: 8 / 5; grid-column: span 2;"><img class="shot" src="turma1.jpg" alt="Turma de formatura com camisetas e tirantes Avanti"></div>
+        <div class="frame" style="aspect-ratio: 4 / 3;"><img class="shot" src="caneca.jpg" alt="Caneca e tirantes personalizados de terceirão"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GARANTIAS -->
+  <section id="garantias" style="padding: 104px 0; background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+    <div class="wrap">
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 660px; margin-bottom: 48px;">
+        <span class="eyebrow">Segurança na compra</span>
+        <h2 style="font-size: 44px;">Quatro garantias por escrito.</h2>
+        <p style="font-size: 16.5px; line-height: 1.6; color: var(--fg-2);">
+          Comprar personalizado pela internet dá insegurança — com razão. Então a gente coloca tudo na mesa antes de você pagar qualquer coisa.
+        </p>
+      </div>
+
+      <div class="grid g2" style="gap: 20px;">
+        <div class="card" style="display: flex; gap: 20px; padding: 32px;">
+          <div style="flex-shrink: 0; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--accent-soft);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3 4.5 6v5.6c0 4.4 3.1 8.1 7.5 9.4 4.4-1.3 7.5-5 7.5-9.4V6L12 3Z"></path><path d="m9.3 12.2 1.9 1.9 3.6-3.9"></path></svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--fg-3);">01</span>
+            <h3 style="font-size: 21px;">Empresa 100% regularizada, com NF</h3>
+            <p style="font-size: 14.5px; line-height: 1.65; color: var(--fg-2);">Atuamos com total transparência e responsabilidade fiscal. Todos os pedidos acompanham Nota Fiscal, garantindo a segurança jurídica da sua compra.</p>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; gap: 20px; padding: 32px;">
+          <div style="flex-shrink: 0; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--accent-soft);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h11v9a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7Z"></path><path d="M15 10h2.5a2.5 2.5 0 0 1 0 5H15"></path><path d="m7.5 12.5 1.7 1.7 2.8-3.2"></path></svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--fg-3);">02</span>
+            <h3 style="font-size: 21px;">Garantia total de qualidade</h3>
+            <p style="font-size: 14.5px; line-height: 1.65; color: var(--fg-2);">Seus produtos têm garantia contra falhas de impressão ou defeitos de fabricação. Identificou qualquer divergência? A troca é sem nenhum custo adicional.</p>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; gap: 20px; padding: 32px;">
+          <div style="flex-shrink: 0; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--accent-soft);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 7.5h11v9H2z"></path><path d="M13 10.5h4l3 3v3h-7z"></path><circle cx="6" cy="18" r="1.8"></circle><circle cx="17" cy="18" r="1.8"></circle></svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--fg-3);">03</span>
+            <h3 style="font-size: 21px;">Envio seguro com proteção de carga</h3>
+            <p style="font-size: 14.5px; line-height: 1.65; color: var(--fg-2);">Entregas via Correios ou transportadoras credenciadas, com seguro total contratado. Em caso de extravio ou roubo no transporte, o reembolso é integral.</p>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; gap: 20px; padding: 32px;">
+          <div style="flex-shrink: 0; display: grid; place-items: center; width: 48px; height: 48px; border-radius: 14px; background: var(--accent-soft);">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--accent-text)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6.5h18v11H3z"></path><path d="M3 10.5h18"></path><path d="M7 14.5h4"></path></svg>
+          </div>
+          <div style="display: flex; flex-direction: column; gap: 9px;">
+            <span style="font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--fg-3);">04</span>
+            <h3 style="font-size: 21px;">Pagamento facilitado 50/50</h3>
+            <p style="font-size: 14.5px; line-height: 1.65; color: var(--fg-2);">50% no fechamento do pedido para iniciar a produção e 50% só quando a mercadoria estiver pronta para o envio. Parceria justa para os dois lados.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- COMO FUNCIONA -->
+  <section id="processo" style="padding: 104px 0; background: var(--bg);">
+    <div class="wrap">
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 620px; margin-bottom: 52px;">
+        <span class="eyebrow">Como funciona a compra</span>
+        <h2 style="font-size: 44px;">Cinco passos, do "oi" à entrega.</h2>
+      </div>
+
+      <div class="steps" style="display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 0;">
+        <div style="display: flex; flex-direction: column; gap: 13px; padding: 24px 26px 0 0; border-top: 2px solid var(--accent);">
+          <span style="font-family: var(--ff-display); font-size: 32px; font-weight: 700; color: var(--accent-text); line-height: 1;">01</span>
+          <h3 style="font-size: 17px;">Faça seu orçamento</h3>
+          <p style="font-size: 14px; line-height: 1.6; color: var(--fg-2);">Clique no botão e fale direto com a nossa equipe, sem formulário e sem robô.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 13px; padding: 24px 26px 0; border-top: 2px solid var(--line-2);">
+          <span style="font-family: var(--ff-display); font-size: 32px; font-weight: 700; color: var(--fg-3); line-height: 1;">02</span>
+          <h3 style="font-size: 17px;">Atendimento personalizado</h3>
+          <p style="font-size: 14px; line-height: 1.6; color: var(--fg-2);">Tiramos suas dúvidas e montamos um orçamento sob medida para o seu projeto.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 13px; padding: 24px 26px 0; border-top: 2px solid var(--line-2);">
+          <span style="font-family: var(--ff-display); font-size: 32px; font-weight: 700; color: var(--fg-3); line-height: 1;">03</span>
+          <h3 style="font-size: 17px;">Criação da arte (100% grátis)</h3>
+          <p style="font-size: 14px; line-height: 1.6; color: var(--fg-2);">Diga como você imagina o layout e nós criamos. Grátis, sem compromisso e do seu jeito.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 13px; padding: 24px 26px 0; border-top: 2px solid var(--line-2);">
+          <span style="font-family: var(--ff-display); font-size: 32px; font-weight: 700; color: var(--fg-3); line-height: 1;">04</span>
+          <h3 style="font-size: 17px;">Produção dedicada</h3>
+          <p style="font-size: 14px; line-height: 1.6; color: var(--fg-2);">Pedido aprovado, agora é com a gente: qualidade e atenção em cada detalhe.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 13px; padding: 24px 0 0 26px; border-top: 2px solid var(--line-2);">
+          <span style="font-family: var(--ff-display); font-size: 32px; font-weight: 700; color: var(--fg-3); line-height: 1;">05</span>
+          <h3 style="font-size: 17px;">Entrega na sua casa</h3>
+          <p style="font-size: 14px; line-height: 1.6; color: var(--fg-2);">Correios ou transportadora, com tudo chegando com segurança direto na sua porta.</p>
+        </div>
+      </div>
+
+      <div style="display: flex; justify-content: center; margin-top: 48px;">
+        <a class="btn btn-primary" href="https://wa.me/5551999268517?text=Ol%C3%A1!%20Quero%20fazer%20um%20or%C3%A7amento%20com%20a%20Avanti.">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Z"></path></svg>
+          Faça seu orçamento
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- AVALIAÇÕES -->
+  <section style="padding: 104px 0; background: var(--bg-2); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+    <div class="wrap">
+      <div style="display: flex; flex-direction: column; gap: 16px; max-width: 620px; margin-bottom: 44px;">
+        <span class="eyebrow">O que dizem as turmas</span>
+        <h2 style="font-size: 44px;">Avaliações do Google.</h2>
+      </div>
+
+      <div class="grid g3">
+        <div class="card" style="display: flex; flex-direction: column; gap: 18px; padding: 30px;">
+          <div role="img" aria-label="5 de 5 estrelas" style="display: flex; gap: 3px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+          </div>
+          <p style="font-size: 15.5px; line-height: 1.65; color: var(--fg);">[COLE AQUI UMA AVALIAÇÃO REAL DO GOOGLE — 2 a 3 linhas]</p>
+          <div style="display: flex; flex-direction: column; margin-top: auto;">
+            <span style="font-size: 13.5px; font-weight: 700;">[NOME]</span>
+            <span style="font-size: 12.5px; color: var(--fg-3);">[TURMA / ESCOLA / CIDADE]</span>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; gap: 18px; padding: 30px;">
+          <div role="img" aria-label="5 de 5 estrelas" style="display: flex; gap: 3px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+          </div>
+          <p style="font-size: 15.5px; line-height: 1.65; color: var(--fg);">[COLE AQUI UMA AVALIAÇÃO REAL DO GOOGLE — 2 a 3 linhas]</p>
+          <div style="display: flex; flex-direction: column; margin-top: auto;">
+            <span style="font-size: 13.5px; font-weight: 700;">[NOME]</span>
+            <span style="font-size: 12.5px; color: var(--fg-3);">[TURMA / ESCOLA / CIDADE]</span>
+          </div>
+        </div>
+
+        <div class="card" style="display: flex; flex-direction: column; gap: 18px; padding: 30px;">
+          <div role="img" aria-label="5 de 5 estrelas" style="display: flex; gap: 3px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="var(--accent)"><path d="m12 2.6 2.6 6.1 6.6.55-5 4.33 1.5 6.45L12 16.6l-5.7 3.43 1.5-6.45-5-4.33 6.6-.55L12 2.6Z"></path></svg>
+          </div>
+          <p style="font-size: 15.5px; line-height: 1.65; color: var(--fg);">[COLE AQUI UMA AVALIAÇÃO REAL DO GOOGLE — 2 a 3 linhas]</p>
+          <div style="display: flex; flex-direction: column; margin-top: auto;">
+            <span style="font-size: 13.5px; font-weight: 700;">[NOME]</span>
+            <span style="font-size: 12.5px; color: var(--fg-3);">[TURMA / ESCOLA / CIDADE]</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" style="padding: 104px 0; background: var(--bg);">
+    <div class="wrap split" style="display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 64px; align-items: start;">
+      <div style="display: flex; flex-direction: column; gap: 16px;">
+        <span class="eyebrow">Dúvidas frequentes</span>
+        <h2 style="font-size: 40px;">O que todo mundo pergunta antes de fechar.</h2>
+        <p style="font-size: 15.5px; line-height: 1.6; color: var(--fg-2);">
+          Ficou faltando alguma? Manda no WhatsApp que a gente responde.
+        </p>
+      </div>
+
+      <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px 0; border-top: 1px solid var(--line);">
+          <h3 style="font-size: 18px;">Qual é o pedido mínimo?</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: var(--fg-2);">10 unidades. Com 10 a gente já coloca a mão na massa, então turma pequena também consegue fechar.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px 0; border-top: 1px solid var(--line);">
+          <h3 style="font-size: 18px;">Vocês fazem a arte ou eu preciso mandar pronta?</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: var(--fg-2);">A gente cria, e é 100% grátis. Você conta como imagina o layout, nós desenhamos e mandamos para aprovação. Se já tiver arte pronta, também aceitamos.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px 0; border-top: 1px solid var(--line);">
+          <h3 style="font-size: 18px;">Vocês enviam para a minha cidade?</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: var(--fg-2);">Enviamos para todo o Brasil, por Correios ou transportadora credenciada, sempre com seguro de carga.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px 0; border-top: 1px solid var(--line);">
+          <h3 style="font-size: 18px;">Qual é o prazo de produção e entrega?</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: var(--fg-2);">A produção leva [PRAZO DE PRODUÇÃO] dias úteis depois da aprovação da arte. O frete varia conforme a cidade e o prazo exato entra no orçamento.</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px 0; border-top: 1px solid var(--line);">
+          <h3 style="font-size: 18px;">Como funciona o pagamento?</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: var(--fg-2);">50% no fechamento do pedido, para iniciar a produção, e 50% quando a mercadoria estiver pronta para envio. Aceitamos [FORMAS DE PAGAMENTO].</p>
+        </div>
+        <div style="display: flex; flex-direction: column; gap: 10px; padding: 26px 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+          <h3 style="font-size: 18px;">Vocês emitem nota fiscal?</h3>
+          <p style="font-size: 15px; line-height: 1.65; color: var(--fg-2);">Sim, em todos os pedidos. CNPJ 41.866.783/0001-71 — importante para quem precisa prestar contas com a turma ou com a escola.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA FINAL -->
+  <section style="padding: 0 0 104px; background: var(--bg);">
+    <div class="wrap">
+      <div class="brand-dark" style="position: relative; overflow: hidden; display: flex; flex-direction: column; align-items: center; padding: 84px 48px; border-radius: 28px; background-color: #0B0916; background-image: url(./fundo.jpg); background-size: 620px auto; background-repeat: repeat; border: 1px solid rgba(165,9,250,0.35); text-align: center;">
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(11,9,22,0.78) 0%, rgba(11,9,22,0.94) 100%); pointer-events: none;"></div>
+        <div style="position: relative; display: flex; flex-direction: column; align-items: center; gap: 22px;">
+          <img class="logo" src="logo.png" alt="Avanti" style="height: 64px; margin-bottom: 4px;">
+          <h2 style="font-size: 46px; max-width: 720px; letter-spacing: -0.035em; color: #F5F2FA;">Receba a arte da sua turma <span style="color: #C081FF;">antes de decidir qualquer coisa.</span></h2>
+          <p style="font-size: 17px; line-height: 1.55; color: #ADA4C2; max-width: 540px;">Criação 100% grátis e sem compromisso. Você só fecha quando estiver olhando para o layout pronto.</p>
+          <a class="btn btn-primary" href="https://wa.me/5551999268517?text=Ol%C3%A1!%20Quero%20fazer%20um%20or%C3%A7amento%20com%20a%20Avanti." style="min-height: 60px; padding: 0 34px; font-size: 16px; margin-top: 6px;">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Zm4.66 10.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.65.81-.79.98-.15.16-.29.18-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.11-.23-.17-.48-.29Z"></path></svg>
+            Faça seu orçamento
+          </a>
+          <span style="font-size: 13.5px; color: #ADA4C2;">WhatsApp [CONFIRMAR NÚMERO] · respondemos em [PRAZO DE RESPOSTA]</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer style="background: var(--bg-2); border-top: 1px solid var(--line); padding: 60px 0 32px;">
+    <div class="wrap">
+      <div class="footer-cols" style="display: grid; grid-template-columns: minmax(0, 1.4fr) repeat(3, minmax(0, 1fr)); gap: 40px; padding-bottom: 44px;">
+
+        <div style="display: flex; flex-direction: column; gap: 16px; max-width: 300px;">
+          <div style="display: flex;">
+            <img class="logo logo-dark" src="logo.png" alt="Avanti" style="height: 52px;">
+            <img class="logo logo-light" src="logo-alt.png" alt="Avanti" style="height: 52px;">
+          </div>
+          <p style="font-size: 14px; line-height: 1.6; color: var(--fg-2);">Personalizados para terceirão e formatura. Arte grátis, produção própria e envio para todo o Brasil.</p>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-3);">Produtos</span>
+          <a href="#produtos" style="font-size: 14px; color: var(--fg-2);">Canecas</a>
+          <a href="#produtos" style="font-size: 14px; color: var(--fg-2);">Camisetas</a>
+          <a href="#produtos" style="font-size: 14px; color: var(--fg-2);">Moletons</a>
+          <a href="#produtos" style="font-size: 14px; color: var(--fg-2);">Tirantes</a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-3);">A empresa</span>
+          <a href="#garantias" style="font-size: 14px; color: var(--fg-2);">Garantias</a>
+          <a href="#processo" style="font-size: 14px; color: var(--fg-2);">Como funciona</a>
+          <a href="#trabalhos" style="font-size: 14px; color: var(--fg-2);">Trabalhos</a>
+          <a href="#faq" style="font-size: 14px; color: var(--fg-2);">Dúvidas</a>
+        </div>
+
+        <div style="display: flex; flex-direction: column; gap: 12px;">
+          <span style="font-size: 11.5px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--fg-3);">Contato</span>
+          <a href="https://wa.me/5551999268517?text=Ol%C3%A1!%20Quero%20fazer%20um%20or%C3%A7amento%20com%20a%20Avanti." style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--fg-2);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Z"></path></svg>
+            [WHATSAPP]
+          </a>
+          <a href="#" style="display: flex; align-items: center; gap: 8px; font-size: 14px; color: var(--fg-2);">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"></rect><circle cx="12" cy="12" r="3.8"></circle><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"></circle></svg>
+            [@INSTAGRAM]
+          </a>
+          <span style="font-size: 14px; line-height: 1.55; color: var(--fg-2);">Rua Celeste Fornari, 469<br>Centro · Arvorezinha/RS<br>95995-000</span>
+        </div>
+      </div>
+
+      <hr class="rule">
+
+      <div style="display: flex; align-items: center; justify-content: space-between; gap: 24px; flex-wrap: wrap; padding-top: 26px;">
+        <span style="font-size: 12.5px; color: var(--fg-3);">© 2026 Avanti Personalizados · CNPJ 41.866.783/0001-71</span>
+        <span style="font-size: 12.5px; color: var(--fg-3);">Todos os direitos reservados</span>
+      </div>
+    </div>
+  </footer>
+
+</div>
+</x-dc>
+<script data-dc-script data-props='{"theme":{"editor":"enum","options":["dark","light"],"default":"dark","section":"Tema"},"$preview":{"width":1440,"height":8600}}'>
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { theme: null };
+  }
+  renderVals() {
+    const theme = this.state.theme || this.props.theme || 'dark';
+    const isDark = theme !== 'light';
+    return {
+      themeClass: isDark ? 'theme-dark' : 'theme-light',
+      isDark: isDark,
+      isLight: !isDark,
+      toggleTheme: () => this.setState({ theme: isDark ? 'light' : 'dark' })
+    };
+  }
+}
+</script>
+</body>
+</html>

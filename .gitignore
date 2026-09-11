@@ -1,0 +1,14 @@
+# dependências
+node_modules/
+
+# Vercel
+.vercel/
+
+# sistema
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# temporários
+*.log
+.tmp-*/
