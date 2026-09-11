@@ -386,7 +386,6 @@ a:hover { color: var(--fg); }
 }
 .section__intro { display: flex; flex-direction: column; gap: 16px; max-width: 620px; }
 .section__intro h2 { font-size: clamp(28px, 3.2vw, 40px); }
-.section__intro .btn { align-self: flex-start; margin-top: 6px; }
 
 /* ---------- grids e cards ---------- */
 .grid { display: grid; gap: 20px; }
@@ -545,7 +544,6 @@ a:hover { color: var(--fg); }
 .step--active .step__num { color: var(--accent-text); }
 .step h3 { font-size: 17px; }
 .step p { font-size: 14px; line-height: 1.6; color: var(--fg-2); }
-.steps + .center { margin-top: 48px; }
 
 /* ---------- FAQ ---------- */
 .faq { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 64px; align-items: start; }
@@ -614,7 +612,31 @@ a:hover { color: var(--fg); }
 .cta h2 { font-size: clamp(28px, 3.6vw, 46px); max-width: 720px; letter-spacing: -0.035em; }
 .cta h2 em { font-style: normal; color: var(--accent-text); }
 .cta__inner > p { font-size: 17px; line-height: 1.55; color: var(--fg-2); max-width: 540px; }
-.cta__note { font-size: 13.5px; color: var(--fg-2); }
+.cta__note {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px 16px;
+  margin-top: 8px;
+  font-size: 15px;
+  color: var(--fg-2);
+}
+/* sem botão nesta seção (a pedido), o telefone é o que leva à conversa */
+.cta__zap {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 1px solid var(--line-2);
+  font-weight: 700;
+  color: var(--fg);
+  transition: border-color .15s ease, color .15s ease;
+}
+.cta__zap:hover { color: var(--accent-text); border-color: var(--accent); }
+.cta__prazo { font-size: 13.5px; }
 
 /* ---------- footer ---------- */
 .footer { background: var(--bg-2); border-top: 1px solid var(--line); padding: 60px 0 32px; }
