@@ -426,6 +426,9 @@ a:hover { color: var(--fg); }
 .card__icon svg { width: 22px; height: 22px; }
 .card__num { font-size: 12px; font-weight: 700; letter-spacing: 0.14em; color: var(--fg-3); }
 
+/* A seção "Avaliações do Google" está fora da página por enquanto, a pedido.
+   Estes estilos ficam aqui para quando ela voltar: é só recolocar o markup
+   (blockquote.card.card--review) entre "Como funciona" e o Instagram. */
 .card--review { display: flex; flex-direction: column; gap: 18px; padding: 30px; margin: 0; }
 .stars { display: flex; gap: 3px; color: var(--accent); }
 .stars svg { width: 16px; height: 16px; }

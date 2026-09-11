@@ -67,9 +67,10 @@ em vez de virar um link morto.
 
 Estão todos direto no HTML, em português, sem template. É só procurar e editar.
 
-Ainda faltam as **avaliações do Google**: procure por
-`[COLE AQUI UMA AVALIAÇÃO REAL DO GOOGLE` (3 ocorrências) e substitua pelo texto real,
-junto com `[NOME]` e `[TURMA / ESCOLA / CIDADE]`.
+**A seção "Avaliações do Google" está fora da página por enquanto**, a pedido. Os
+estilos dela continuam no `styles.css` (procure por `.card--review`), então para
+trazê-la de volta basta recolocar o markup entre "Como funciona" e o Instagram —
+lembrando de ajustar as classes de fundo para a alternância não se perder.
 
 ### Posts do Instagram → `site/js/instagram.js`
 
@@ -193,7 +194,6 @@ Ele pede login no primeiro uso e faz o deploy direto da pasta, sem passar pelo G
 
 ### Antes de publicar, confira
 
-- [ ] Avaliações reais do Google no lugar dos `[COLCHETES]` (`index.html`)
 - [ ] `prazoProducao`, `formasPagamento` e `prazoResposta` em `js/config.js`
 - [ ] Números batendo com o Instagram (ver "Pendências" no fim deste arquivo)
 
@@ -236,9 +236,10 @@ Avanti/
 
 Nada disso impede o site de ir ao ar, mas vale resolver:
 
-1. **Avaliações do Google** — três `[COLCHETES]` no `index.html` esperando texto real.
-2. **Prazos e pagamento** — `prazoProducao`, `formasPagamento` e `prazoResposta`
+1. **Prazos e pagamento** — `prazoProducao`, `formasPagamento` e `prazoResposta`
    em `site/js/config.js`.
+2. **Avaliações do Google** — a seção saiu da página por enquanto. Quando tiver os
+   depoimentos, dá para trazê-la de volta (os estilos continuam no CSS).
 3. **Números divergentes entre o site e o Instagram.** A bio do @canecasulcanecas diz
    "+ de 6mil clientes atendidos" e "Referência desde 2018"; o site diz "+10 mil
    clientes" e "+9 anos" (números que vieram do briefing). São dados públicos em dois
