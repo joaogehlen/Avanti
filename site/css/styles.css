@@ -911,8 +911,9 @@ a { color: inherit; }
   .abertura__oferta { grid-column: 1; grid-row: 2; margin: -64px 12px 0; }
   .abertura__faixa { grid-column: 1; grid-row: 3; margin: var(--cola) 12px 0; }
 
-  .kit__foto { grid-column: 1 / span 12; max-height: none; }
-  .kit__texto { grid-column: 1 / span 12; margin: -72px 12px 0; }
+  /* no celular o texto e os botões vêm antes, e a foto logo abaixo: o zoom acontece à vista */
+  .kit__texto { grid-column: 1 / span 12; grid-row: 1; margin: 0 12px; }
+  .kit__foto { grid-column: 1 / span 12; grid-row: 2; max-height: none; margin-top: -28px; }
 
   .produtos__cabeca { grid-column: 1 / span 12; grid-row: 1; margin: 0; }
   .produto--moletons { grid-column: 1 / span 12; grid-row: 2; }
@@ -960,7 +961,7 @@ a { color: inherit; }
   .abertura__acao .tira { width: 100%; }
   .tira { white-space: normal; }
 
-  .kit__texto { margin: -48px 8px 0; }
+  .kit__texto { margin: 0 8px; }
   .produto--canecas,
   .produto--camisetas { grid-column: 1 / span 12; }
   .produto--camisetas { grid-row: 4; }
