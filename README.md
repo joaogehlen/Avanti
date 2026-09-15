@@ -43,8 +43,9 @@ Parar: `Ctrl+C` na janela do terminal.
 ### Contato, prazos e formas de pagamento → `site/js/config.js`
 
 Esse é o único arquivo que você precisa editar para o site entrar no ar de verdade.
-Todo campo deixado em branco (`''`) mantém o placeholder entre colchetes visível na
-página, de propósito, para não passar batido.
+Todo campo deixado em branco (`''`) **esconde a frase inteira** que depende dele, para o
+visitante nunca ver um `[COLCHETE]`. O número de WhatsApp e o @ do Instagram também
+já vêm escritos no HTML, então a página continua completa mesmo sem JavaScript.
 
 ```js
 window.AVANTI = {
@@ -58,7 +59,9 @@ window.AVANTI = {
 };
 ```
 
-Os três últimos ainda estão vazios e aparecem como `[COLCHETES]` na página.
+Os três últimos ainda estão vazios. Enquanto estiverem assim, estas frases ficam fora
+da página: "A produção leva X dias úteis…" e "Aceitamos X." no FAQ, e "respondemos em X"
+no fechamento. Basta preencher o campo para a frase aparecer.
 
 Enquanto `instagram` estiver em branco, o link do Instagram no rodapé fica **escondido**
 em vez de virar um link morto.
@@ -67,10 +70,10 @@ em vez de virar um link morto.
 
 Estão todos direto no HTML, em português, sem template. É só procurar e editar.
 
-**A seção "Avaliações do Google" está fora da página por enquanto**, a pedido. Os
-estilos dela continuam no `styles.css` (procure por `.card--review`), então para
-trazê-la de volta basta recolocar o markup entre "Como funciona" e o Instagram —
-lembrando de ajustar as classes de fundo para a alternância não se perder.
+**A seção "Avaliações do Google" está fora da página por enquanto**, a pedido. Com o
+novo visual os estilos antigos dela saíram do CSS. Quando houver depoimentos reais, ela
+volta como mais um cartaz do muro (`.cartaz` com uma `.tarja` de título), entre
+"Como funciona" e o Instagram.
 
 ### Posts do Instagram → `site/js/instagram.js`
 
@@ -90,8 +93,10 @@ Por isso a lista no topo de `instagram.js` é a fonte da verdade. Para trocar um
 { img: 'img/instagram/post-1.jpg', url: 'https://www.instagram.com/p/C1a2B3c4D5e/', alt: '...' }
 ```
 
-O perfil configurado é **@canecasulcanecas**. Os 8 cards são posts reais, capturados
-em 11/09/2026: os **3 primeiros são os fixados**, do 4 ao 8 são os mais recentes.
+O perfil configurado é **@canecasulcanecas**. Os 7 cards são posts reais, capturados
+em 11/09/2026: os **3 primeiros são os fixados**, os outros 4 são os mais recentes. O
+post-5 (moletom corporativo da GB Metalúrgica) saiu por não ser do público de formatura.
+A lista em `instagram.js` e os slides do HTML precisam ficar na mesma ordem.
 
 Como a API não marca posts fixados, eles foram identificados pela grade do perfil:
 aparecem no topo mesmo tendo shortcode mais antigo que todos os outros, o que só
@@ -115,18 +120,30 @@ A biblioteca do carrossel é o [Swiper 11](https://swiperjs.com) (MIT), baixada 
 
 ### Cores, espaçamentos e tipografia → `site/css/styles.css`
 
-Tudo sai de variáveis CSS no topo do arquivo. A paleta veio da própria marca:
+Tudo sai de variáveis CSS no topo do arquivo. O visual é um **muro de lambe-lambe**:
+cada seção é um cartaz de papel colado numa grade de 12 colunas.
 
-| | Escuro | Claro |
+| | Escuro (muro à noite) | Claro (muro de dia) |
 |---|---|---|
-| Fundo | `#0B0916` | `#FAF8FF` |
-| Roxo (botões) | `#A509FA` | `#8E05D6` |
-| Roxo (texto/links) | `#C081FF` | `#7A00BC` |
+| Muro | `#141216` | `#BFBAB0` |
+| Texto no muro | `#ECE9E2` / `#A9A4AF` | `#131115` / `#3B3840` |
+| Papel dos cartazes | `#F1EEE6` | `#F1EEE6` |
+| Tinta | `#121014` | `#121014` |
+| Roxo de ação | `#A509FA` | `#A509FA` |
 
-O `#A509FA` é o roxo do dripping do logo e o `#0B0916` é o fundo do padrão de grafite.
+O `#A509FA` é o roxo do escorrido do logo e aparece **só em ação**: botões de
+orçamento, links de WhatsApp e o anel de foco. Não use roxo como decoração.
 Todas as combinações de texto passam no contraste WCAG AA.
 
-Tipografia: **Space Grotesk** nos títulos, **Manrope** no corpo, via Google Fonts.
+Tipografia: **League Gothic** (letra condensada de cartaz de gráfica) nos títulos,
+tarjas e botões; **Archivo** no texto corrido. As duas vêm do Google Fonts.
+
+Peças principais no CSS:
+- `.cartaz`: o papel colado, com grão e sombra
+- `.tarja`: o título impresso numa faixa preta
+- `.tira`: o botão roxo levemente torto
+- `.etiqueta`: a legenda colada sobre as fotos
+- `.rasgo-esq` / `.rasgo-topo`: a borda rasgada, só onde um cartaz sobrepõe outro
 
 ### Imagens → `site/img/`
 
@@ -137,18 +154,27 @@ o mesmo nome de arquivo e o site continua funcionando.
 
 ## Decisões de design que valem saber
 
-- **O hero e o bloco final ficam escuros nos dois temas.** Eles usam o `fundo.jpg`,
-  que é a arte de grafite da própria Avanti — clarear embaçaria o padrão. O resto
-  da página troca normalmente. Isso é a classe `.brand-dark` no CSS.
+- **O banner de grafite é um cartaz impresso, igual nos dois temas.** O `fundo.jpg`
+  aparece sem véu por cima na abertura e no fechamento. O que muda com o tema é o muro
+  em volta dos cartazes, não os cartazes.
+- **"Uma arte. O kit inteiro."** Os botões Kit / Moletom / Caneca / Tirante dão zoom na
+  mesma foto real (`moletom.jpg`), onde a arte da arara aparece nos três produtos. Sem
+  JavaScript os botões somem e a foto aparece inteira.
+- **Nenhum cartaz fica escondido esperando animação.** Uma revelação "colando" os
+  cartazes na rolagem foi testada e removida: em alguns navegadores ela não disparava e
+  metade da página ficava preta. O movimento que sobrou é pequeno e nunca esconde
+  conteúdo (a tira roxa endireitando no hover, o zoom do kit, o carrossel).
+- **O WhatsApp flutuante só existe em telas menores.** Ele some enquanto a abertura ou
+  o fechamento estão na tela, porque os dois já têm o botão.
 - **O tema segue a preferência do sistema na primeira visita** e depois guarda a
   escolha da pessoa no `localStorage`. Um script inline no `<head>` aplica o tema
-  antes do primeiro paint, para não piscar branco.
-- **O logo troca com o tema**: `logo.png` (colorido) no escuro, `logo-alt.png`
+  (salvo ou do sistema) antes do primeiro paint, para não piscar.
+- **O logo troca com o tema**: `logo.png` (colorido) no muro escuro, `logo-alt.png`
   (preto) no claro.
 - **O FAQ usa `<details>`/`<summary>` nativos** — acordeão acessível, funciona com
   teclado e sem JavaScript.
 - **A página inteira funciona sem JavaScript.** Sem JS você perde o toggle de tema,
-  o menu mobile e a substituição dos placeholders, mas todo o conteúdo e todos os
+  o menu mobile, o zoom do kit e o carrossel animado, mas todo o conteúdo e todos os
   links de WhatsApp continuam valendo.
 
 ---
@@ -195,7 +221,9 @@ Ele pede login no primeiro uso e faz o deploy direto da pasta, sem passar pelo G
 ### Antes de publicar, confira
 
 - [ ] `prazoProducao`, `formasPagamento` e `prazoResposta` em `js/config.js`
-- [ ] Números batendo com o Instagram (ver "Pendências" no fim deste arquivo)
+- [ ] Com o domínio definido, trocar o `og:image` do `index.html` por uma URL absoluta
+  (ex.: `https://seudominio.com.br/img/moletom.jpg`), senão a prévia do link no WhatsApp
+  sai sem imagem
 
 ---
 
@@ -229,7 +257,8 @@ Avanti/
 
 - CNPJ 41.866.783/0001-71
 - Rua Celeste Fornari, 469 · Centro · Arvorezinha/RS · 95995-000
-- +9 anos de experiência · +10 mil clientes · +400 mil produtos enviados
+- Desde 2018 · +6 mil clientes atendidos (os números da bio do Instagram, que são os
+  que valem; "+9 anos", "+10 mil" e "+400 mil" do briefing saíram do site)
 - WhatsApp (51) 99926-8517 — confirmado na bio do @canecasulcanecas
 
 ## Pendências
@@ -238,11 +267,9 @@ Nada disso impede o site de ir ao ar, mas vale resolver:
 
 1. **Prazos e pagamento** — `prazoProducao`, `formasPagamento` e `prazoResposta`
    em `site/js/config.js`.
-2. **Avaliações do Google** — a seção saiu da página por enquanto. Quando tiver os
-   depoimentos, dá para trazê-la de volta (os estilos continuam no CSS).
-3. **Números divergentes entre o site e o Instagram.** A bio do @canecasulcanecas diz
-   "+ de 6mil clientes atendidos" e "Referência desde 2018"; o site diz "+10 mil
-   clientes" e "+9 anos" (números que vieram do briefing). São dados públicos em dois
-   canais, então convém alinhar.
-4. **Marca x perfil** — o site é Avanti e o Instagram é @canecasulcanecas. Faz sentido
-   internamente, mas quem clica cai num perfil com outro nome.
+2. **Avaliações do Google** — a seção saiu da página por enquanto. Quando tiver
+   depoimentos reais, ela volta como um cartaz novo.
+3. **`og:image` absoluto** — depende do domínio final (ver checklist acima).
+4. **Canais próprios da Avanti** — o WhatsApp e o Instagram atuais são da Canecas Sul e
+   são provisórios. Quando a Avanti tiver os dela, troque em `config.js` e nos textos
+   fixos do `index.html` (número e @).

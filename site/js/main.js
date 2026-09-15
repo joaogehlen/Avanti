@@ -7,35 +7,28 @@
   var cfg = window.AVANTI || {};
   var root = document.documentElement;
 
-  /* ---------- tema claro / escuro ---------- */
+  /* ---------- tema claro / escuro ----------
+     o <head> já aplicou a escolha salva ou a do sistema antes do paint */
   var STORAGE_KEY = 'avanti-theme';
-  var toggle = document.getElementById('theme-toggle');
+  var COR_TEMA = { dark: '#141216', light: '#BFBAB0' };
 
-  function currentTheme() {
-    return root.dataset.theme === 'light' ? 'light' : 'dark';
+  function atualizarCorTema() {
+    var meta = document.querySelector('meta[name="theme-color"]');
+    if (meta) meta.setAttribute('content', COR_TEMA[root.dataset.theme] || COR_TEMA.dark);
   }
 
   function setTheme(theme) {
     root.dataset.theme = theme;
-    var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', theme === 'light' ? '#FAF8FF' : '#0B0916');
+    atualizarCorTema();
     try { localStorage.setItem(STORAGE_KEY, theme); } catch (e) {}
   }
 
-  // se a pessoa nunca escolheu, segue a preferência do sistema
-  try {
-    if (!localStorage.getItem(STORAGE_KEY) &&
-        window.matchMedia &&
-        window.matchMedia('(prefers-color-scheme: light)').matches) {
-      root.dataset.theme = 'light';
-    }
-  } catch (e) {}
-
-  if (toggle) {
-    toggle.addEventListener('click', function () {
-      setTheme(currentTheme() === 'light' ? 'dark' : 'light');
+  atualizarCorTema();
+  Array.prototype.forEach.call(document.querySelectorAll('[data-tema-toggle]'), function (botao) {
+    botao.addEventListener('click', function () {
+      setTheme(root.dataset.theme === 'light' ? 'dark' : 'light');
     });
-  }
+  });
 
   /* ---------- links de WhatsApp ---------- */
   if (cfg.whatsapp) {
@@ -43,23 +36,22 @@
     if (cfg.whatsappMensagem) href += '?text=' + encodeURIComponent(cfg.whatsappMensagem);
     Array.prototype.forEach.call(document.querySelectorAll('a[data-wa]'), function (a) {
       a.href = href;
-      a.rel = 'noopener';
-      a.target = '_blank';
     });
   }
 
-  /* ---------- Instagram (rodapé + botão da seção) ---------- */
+  /* ---------- Instagram ---------- */
   Array.prototype.forEach.call(document.querySelectorAll('a[data-instagram]'), function (ig) {
     if (cfg.instagram) {
       ig.href = 'https://instagram.com/' + String(cfg.instagram).replace(/^@/, '');
-      ig.rel = 'noopener';
-      ig.target = '_blank';
     } else {
       ig.hidden = true; // sem @ definido, some em vez de virar link morto
     }
   });
 
-  /* ---------- placeholders de texto ---------- */
+  /* ---------- textos vindos do config ----------
+     o HTML já traz o valor atual; aqui só trocamos quando o config tem outro.
+     Frases marcadas com data-cfg-frase ficam escondidas enquanto o campo
+     estiver vazio, para nunca mostrar um [COLCHETE] para o visitante. */
   var textos = {
     whatsappDisplay: cfg.whatsappDisplay,
     instagramDisplay: cfg.instagram ? '@' + String(cfg.instagram).replace(/^@/, '') : '',
@@ -71,12 +63,19 @@
     var valor = textos[el.dataset.cfg];
     if (valor) el.textContent = valor;
   });
+  Array.prototype.forEach.call(document.querySelectorAll('[data-cfg-frase]'), function (frase) {
+    var campos = frase.querySelectorAll('[data-cfg]');
+    var completa = Array.prototype.every.call(campos, function (el) {
+      return !!textos[el.dataset.cfg];
+    });
+    frase.hidden = !completa;
+  });
 
   /* ---------- menu mobile ---------- */
   var menuBtn = document.getElementById('menu-toggle');
   var menu = document.getElementById('menu-mobile');
 
-  function closeMenu() {
+  function fecharMenu() {
     if (!menu || !menuBtn) return;
     menu.hidden = true;
     menuBtn.setAttribute('aria-expanded', 'false');
@@ -85,9 +84,8 @@
 
   if (menuBtn && menu) {
     menuBtn.addEventListener('click', function () {
-      var aberto = menuBtn.getAttribute('aria-expanded') === 'true';
-      if (aberto) {
-        closeMenu();
+      if (menuBtn.getAttribute('aria-expanded') === 'true') {
+        fecharMenu();
       } else {
         menu.hidden = false;
         menuBtn.setAttribute('aria-expanded', 'true');
@@ -95,19 +93,63 @@
       }
     });
 
-    // fecha ao clicar em qualquer link do menu
     Array.prototype.forEach.call(menu.querySelectorAll('a'), function (a) {
-      a.addEventListener('click', closeMenu);
+      a.addEventListener('click', fecharMenu);
     });
 
     document.addEventListener('keydown', function (e) {
-      if (e.key === 'Escape') closeMenu();
+      if (e.key === 'Escape' && menuBtn.getAttribute('aria-expanded') === 'true') {
+        fecharMenu();
+        menuBtn.focus();
+      }
     });
 
-    // volta ao estado normal se a janela crescer
     window.addEventListener('resize', function () {
-      if (window.innerWidth > 1080) closeMenu();
+      if (window.innerWidth >= 1024) fecharMenu();
     });
+  }
+
+  /* ---------- uma arte, o kit inteiro ----------
+     sem JS o controle fica escondido e a foto aparece inteira */
+  var kitFoto = document.querySelector('.kit__foto');
+  var kitControle = document.querySelector('.kit__controle');
+  var kitLegenda = document.querySelector('[data-kit-legenda]');
+  var LEGENDAS = {
+    kit: 'A mesma arte da arara no moletom, na caneca e no tirante da turma.',
+    moletom: 'No moletom: arte grande nas costas e o nome de cada um na frente.',
+    caneca: 'Na caneca térmica: a arte da turma e o nome de cada formando.',
+    tirante: 'No tirante: impressão colorida no cordão inteiro, combinando com a caneca.'
+  };
+
+  if (kitFoto && kitControle) {
+    kitControle.hidden = false;
+    var botoes = kitControle.querySelectorAll('[data-kit-foco]');
+    Array.prototype.forEach.call(botoes, function (botao) {
+      botao.addEventListener('click', function () {
+        var foco = botao.getAttribute('data-kit-foco');
+        kitFoto.setAttribute('data-foco', foco);
+        Array.prototype.forEach.call(botoes, function (b) {
+          b.setAttribute('aria-pressed', b === botao ? 'true' : 'false');
+        });
+        if (kitLegenda) kitLegenda.textContent = LEGENDAS[foco] || LEGENDAS.kit;
+      });
+    });
+  }
+
+  /* ---------- WhatsApp flutuante ----------
+     some enquanto a abertura ou o fechamento (que já têm o botão) estão na tela */
+  var flutuante = document.querySelector('.zap-flutuante');
+  var comBotao = document.querySelectorAll('[data-abertura], #orcamento');
+  if (flutuante && comBotao.length && 'IntersectionObserver' in window) {
+    var visiveis = new Set();
+    var observadorBotao = new IntersectionObserver(function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) visiveis.add(entrada.target);
+        else visiveis.delete(entrada.target);
+      });
+      flutuante.classList.toggle('is-oculto', visiveis.size > 0);
+    }, { threshold: 0.15 });
+    Array.prototype.forEach.call(comBotao, function (el) { observadorBotao.observe(el); });
   }
 
   /* ---------- ano do rodapé ---------- */

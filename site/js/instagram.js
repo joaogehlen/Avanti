@@ -33,15 +33,15 @@ window.AVANTI_INSTAGRAM = {
      --------------------------------------------------------- */
   posts: [
     // --- fixados ---
-    { img: 'img/instagram/post-1.jpg', url: 'https://www.instagram.com/p/DYQZYpVjUvG/', alt: 'Caneca térmica preta do curso Técnico em Agropecuária do CEDUP, turma 25/27, com tirante verde' },
-    { img: 'img/instagram/post-2.jpg', url: 'https://www.instagram.com/p/DUEPqyOkYi9/', alt: 'Moletom off-white de formatura com arte "Ter After 2026" em grafite azul e o nome Duda' },
-    { img: 'img/instagram/post-3.jpg', url: 'https://www.instagram.com/p/DJUq75KxoRh/', alt: 'Caneca térmica preta com frase de terceirão, ao lado de camiseta e tirante personalizados' },
+    // `etiqueta` é a legenda curta colada embaixo da foto: só dados que aparecem no post
+    { img: 'img/instagram/post-1.jpg', url: 'https://www.instagram.com/p/DYQZYpVjUvG/', etiqueta: 'CEDUP 25/27 · caneca e tirante', alt: 'Caneca térmica preta do curso Técnico em Agropecuária do CEDUP, turma 25/27, com tirante verde' },
+    { img: 'img/instagram/post-2.jpg', url: 'https://www.instagram.com/p/DUEPqyOkYi9/', etiqueta: 'Ter After 2026 · moletom', alt: 'Moletom off-white de formatura com arte "Ter After 2026" em grafite azul e o nome Duda' },
+    { img: 'img/instagram/post-3.jpg', url: 'https://www.instagram.com/p/DJUq75KxoRh/', etiqueta: 'Terceirão · caneca, camiseta e tirante', alt: 'Caneca térmica preta com frase de terceirão, ao lado de camiseta e tirante personalizados' },
     // --- mais recentes ---
-    { img: 'img/instagram/post-4.jpg', url: 'https://www.instagram.com/p/DdJ4LbSkfEJ/', alt: 'Caneca térmica preta com arte Terceirão 2026 em vermelho' },
-    { img: 'img/instagram/post-5.jpg', url: 'https://www.instagram.com/p/Dct6WNqFh7s/', alt: 'Moletom preto com o logo da GB Metalúrgica aplicado nas costas' },
-    { img: 'img/instagram/post-6.jpg', url: 'https://www.instagram.com/p/Dcg129blpFw/', alt: 'Caneca térmica branca com arte Terceirão 303 em azul' },
-    { img: 'img/instagram/post-7.jpg', url: 'https://www.instagram.com/p/DcOwN0jke86/', alt: 'Camiseta preta de Técnico em Enfermagem com ilustrações e o nome Lilian' },
-    { img: 'img/instagram/post-8.jpg', url: 'https://www.instagram.com/p/Dbq9ereFk-N/', alt: 'Caneca térmica preta Terceirão 2026 em vinho, com tirantes assinados' }
+    { img: 'img/instagram/post-4.jpg', url: 'https://www.instagram.com/p/DdJ4LbSkfEJ/', etiqueta: 'Terceirão 2026 · caneca', alt: 'Caneca térmica preta com arte Terceirão 2026 em vermelho' },
+    { img: 'img/instagram/post-6.jpg', url: 'https://www.instagram.com/p/Dcg129blpFw/', etiqueta: 'Terceirão 303 · caneca', alt: 'Caneca térmica branca com arte Terceirão 303 em azul' },
+    { img: 'img/instagram/post-7.jpg', url: 'https://www.instagram.com/p/DcOwN0jke86/', etiqueta: 'Técnico em Enfermagem · camiseta', alt: 'Camiseta preta de Técnico em Enfermagem com ilustrações e o nome Lilian' },
+    { img: 'img/instagram/post-8.jpg', url: 'https://www.instagram.com/p/Dbq9ereFk-N/', etiqueta: 'Terceirão 2026 · caneca e tirantes', alt: 'Caneca térmica preta Terceirão 2026 em vinho, com tirantes assinados' }
   ],
 
   /* ---------------------------------------------------------
@@ -110,14 +110,12 @@ window.AVANTI_INSTAGRAM = {
     img.height = 640;
     el.appendChild(img);
 
-    var marca = document.createElement('span');
-    marca.className = 'ig-card__mark';
-    marca.setAttribute('aria-hidden', 'true');
-    marca.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round">' +
-      '<rect x="3.5" y="3.5" width="17" height="17" rx="5"/>' +
-      '<circle cx="12" cy="12" r="3.8"/>' +
-      '<circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg>';
-    el.appendChild(marca);
+    if (post.etiqueta) {
+      var etiqueta = document.createElement('span');
+      etiqueta.className = 'ig-card__etiqueta';
+      etiqueta.textContent = post.etiqueta;
+      el.appendChild(etiqueta);
+    }
 
     return slide;
   }
@@ -216,11 +214,12 @@ window.AVANTI_INSTAGRAM = {
         el: secao.querySelector('.ig-pagination'),
         clickable: true
       },
+      // a faixa ocupa só parte do muro no desktop: conta pela largura dela
+      breakpointsBase: 'container',
       breakpoints: {
-        480: { slidesPerView: 2.2, spaceBetween: 14 },
-        700: { slidesPerView: 3.2, spaceBetween: 16 },
-        1000: { slidesPerView: 4, spaceBetween: 18 },
-        1240: { slidesPerView: 5, spaceBetween: 18 }
+        480: { slidesPerView: 2.2, spaceBetween: 16 },
+        760: { slidesPerView: 3.2, spaceBetween: 18 },
+        1100: { slidesPerView: 4.2, spaceBetween: 18 }
       }
     });
   }

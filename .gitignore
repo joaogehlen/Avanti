@@ -12,3 +12,6 @@ desktop.ini
 # temporários
 *.log
 .tmp-*/
+
+# capturas de revisão do impeccable (geradas de novo a cada revisão)
+.impeccable/review/

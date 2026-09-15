@@ -4,8 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Avanti — Personalizados para terceirão e formatura</title>
-<meta name="description" content="Canecas, camisetas, moletons e tirantes personalizados para turmas de terceirão e formatura. Criação de arte inclusa, pedido mínimo de 10 unidades e envio para todo o Brasil.">
-<meta name="theme-color" content="#0B0916">
+<meta name="description" content="Canecas, camisetas, moletons e tirantes personalizados para turmas de terceirão e formatura. Criação de arte grátis, pedido mínimo de 10 unidades e envio para todo o Brasil.">
+<meta name="theme-color" content="#141216">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/favicon.png">
 <meta property="og:type" content="website">
@@ -16,15 +16,18 @@
 <meta name="twitter:card" content="summary_large_image">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=League+Gothic&display=swap">
 <link rel="stylesheet" href="vendor/swiper/swiper-bundle.min.css">
 <link rel="stylesheet" href="css/styles.css">
 <script src="js/config.js"></script>
 <script>
-  // evita "flash" do tema errado: aplica antes do primeiro paint
+  // aplica o tema antes do primeiro paint: a escolha salva, senão a do sistema
   try {
     var t = localStorage.getItem('avanti-theme');
-    if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+    if (t !== 'light' && t !== 'dark') {
+      t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+    }
+    document.documentElement.dataset.theme = t;
   } catch (e) {}
 </script>
 </head>
@@ -32,462 +35,392 @@
 
 <a class="skip-link" href="#conteudo">Pular para o conteúdo</a>
 
-<!-- ============ BARRA SUPERIOR ============ -->
-<div class="topbar">
-  <div class="wrap topbar__inner">
-    <span>Criação de arte 100% grátis</span>
-    <span class="topbar__sep" aria-hidden="true">✦</span>
-    <span>Pedido mínimo de 10 unidades</span>
-    <span class="topbar__sep" aria-hidden="true">✦</span>
-    <span>Enviamos para todo o Brasil</span>
-  </div>
-</div>
-
-<!-- ============ HEADER ============ -->
-<header class="header" id="topo">
-  <div class="wrap header__inner">
-    <a class="header__logo" href="#topo" aria-label="Avanti — início">
-      <img class="logo logo--color" src="img/logo.png" alt="Avanti" width="900" height="444">
-      <img class="logo logo--mono" src="img/logo-alt.png" alt="Avanti" width="900" height="444">
+<!-- ============ CABEÇALHO ============ -->
+<header class="topo" id="topo">
+  <div class="muro-largura topo__linha">
+    <a class="topo__logo" href="#topo" aria-label="Avanti — início">
+      <img class="logo logo--cor" src="img/logo.png" alt="Avanti" width="900" height="444">
+      <img class="logo logo--preto" src="img/logo-alt.png" alt="Avanti" width="900" height="444">
     </a>
 
     <nav class="nav" aria-label="Navegação principal">
       <a href="#produtos">Produtos</a>
       <a href="#trabalhos">Trabalhos</a>
       <a href="#garantias">Garantias</a>
-      <a href="#processo">Como funciona</a>
       <a href="#faq">Dúvidas</a>
     </nav>
 
-    <div class="header__actions">
-      <button class="icon-btn" id="theme-toggle" type="button" aria-label="Alternar tema claro e escuro" title="Alternar tema claro e escuro">
-        <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
-        <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z"/></svg>
+    <div class="topo__acoes">
+      <button class="botao-icone tema-botao" type="button" data-tema-toggle aria-label="Alternar tema claro e escuro">
+        <svg class="icone-sol" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+        <svg class="icone-lua" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z"/></svg>
       </button>
 
-      <a class="btn btn--primary btn--sm header__cta" data-wa href="https://wa.me/5551999268517">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Zm4.66 10.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.65.81-.79.98-.15.16-.29.18-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
+      <a class="tira tira--pequena topo__cta" data-wa href="https://wa.me/5551999268517" target="_blank" rel="noopener">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Zm4.66 10.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.65.81-.79.98-.15.16-.29.18-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
         <span>Faça seu orçamento</span>
       </a>
 
-      <button class="icon-btn menu-btn" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
-        <svg class="icon-open" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-        <svg class="icon-close" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      <button class="botao-icone menu-botao" id="menu-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu-mobile">
+        <svg class="icone-abrir" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+        <svg class="icone-fechar" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg>
       </button>
     </div>
   </div>
 
   <nav class="menu-mobile" id="menu-mobile" aria-label="Navegação mobile" hidden>
+    <a href="#kit">A arte no kit</a>
     <a href="#produtos">Produtos</a>
     <a href="#trabalhos">Trabalhos</a>
     <a href="#garantias">Garantias</a>
     <a href="#processo">Como funciona</a>
     <a href="#faq">Dúvidas</a>
-    <a class="btn btn--primary menu-mobile__cta" data-wa href="https://wa.me/5551999268517">Faça seu orçamento</a>
+    <button class="menu-mobile__tema" type="button" data-tema-toggle>
+      <svg class="icone-sol" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <svg class="icone-lua" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z"/></svg>
+      <span class="tema-rotulo-escuro">Mudar para o tema claro</span>
+      <span class="tema-rotulo-claro">Mudar para o tema escuro</span>
+    </button>
+    <a class="tira menu-mobile__cta" data-wa href="https://wa.me/5551999268517" target="_blank" rel="noopener">Faça seu orçamento</a>
   </nav>
 </header>
 
 <main id="conteudo">
 
-  <!-- ============ HERO ============ -->
-  <section class="hero brand-dark">
-    <div class="hero__pattern" aria-hidden="true"></div>
-    <div class="hero__veil" aria-hidden="true"></div>
-    <div class="hero__glow" aria-hidden="true"></div>
+  <!-- ============ ABERTURA ============ -->
+  <section class="muro-largura abertura" data-abertura>
+    <div class="cartaz cartaz--banner abertura__banner" role="img" aria-label="Padrão de grafite da Avanti: o logo repetido com latas de spray, coroas e setas em roxo sobre preto"></div>
 
-    <div class="wrap hero__inner">
-      <div class="hero__copy">
-        <p class="pill">
-          <span class="pill__dot" aria-hidden="true"></span>
-          9 anos personalizando formaturas
-        </p>
-
-        <h1>Personalizados para o terceirão, <em>com a arte por nossa conta.</em></h1>
-
-        <p class="hero__lead">
-          Canecas, camisetas, moletons e tirantes para turmas de formatura.
-          Você conta como imagina o layout, a gente desenha sem cobrar nada,
-          e só depois você decide se fecha.
-        </p>
-
-        <div class="hero__actions">
-          <a class="btn btn--primary" data-wa href="https://wa.me/5551999268517">
-            <svg width="19" height="19" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Zm4.66 10.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.65.81-.79.98-.15.16-.29.18-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
-            <span>Faça seu orçamento</span>
-          </a>
-          <a class="btn btn--ghost btn--on-dark" href="#trabalhos">Ver trabalhos</a>
-        </div>
-
-        <p class="hero__note">Orçamento e arte sem compromisso. Você só paga depois de aprovar.</p>
-      </div>
-
-      <div class="hero__media">
-        <figure class="frame hero__photo">
-          <img src="img/moletom.jpg" alt="Dois formandos com moletom e caneca térmica personalizados pela Avanti" width="1400" height="1749">
-        </figure>
-        <p class="badge-stat">
-          <strong>+400 mil</strong>
-          <span>produtos enviados</span>
-        </p>
+    <div class="cartaz abertura__oferta rasgo-esq">
+      <h1>Personalizados para o terceirão, com a arte por nossa conta.</h1>
+      <p class="abertura__apoio">
+        Canecas, camisetas, moletons e tirantes para turmas de formatura.
+        Você conta como imagina o layout, a gente desenha sem cobrar nada
+        e só depois você decide se fecha.
+      </p>
+      <div class="abertura__acao">
+        <a class="tira" data-wa href="https://wa.me/5551999268517" target="_blank" rel="noopener">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Zm4.66 10.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.65.81-.79.98-.15.16-.29.18-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
+          <span>Faça seu orçamento</span>
+        </a>
+        <p class="abertura__nota">Orçamento e arte sem compromisso.<br>Você só paga depois de aprovar.</p>
       </div>
     </div>
 
-    <div class="stats">
-      <div class="wrap stats__inner">
-        <div class="stat"><strong>+9 anos</strong><span>de experiência no mercado</span></div>
-        <div class="stat"><strong>+10 mil</strong><span>clientes atendidos</span></div>
-        <div class="stat"><strong>+400 mil</strong><span>produtos enviados</span></div>
+    <div class="cartaz cartaz--tinta abertura__faixa">
+      <ul class="faixa__lista">
+        <li>Arte grátis</li>
+        <li>Mínimo de 10 unidades</li>
+        <li>Envio para todo o Brasil</li>
+      </ul>
+      <p class="faixa__desde">Desde 2018 · +6 mil clientes atendidos</p>
+    </div>
+  </section>
+
+  <!-- ============ UMA ARTE, O KIT INTEIRO ============ -->
+  <section class="muro-largura muro secao kit" id="kit">
+    <figure class="cartaz cartaz--foto kit__foto" data-foco="kit">
+      <img src="img/moletom.jpg" alt="Dois formandos com moletom off-white, caneca preta e tirante verde, todos com a mesma arte da arara Terceirão 2026" width="1125" height="1377" loading="lazy">
+      <figcaption class="etiqueta">Terceirão 2026 · moletom, caneca e tirante</figcaption>
+    </figure>
+
+    <div class="cartaz kit__texto rasgo-esq">
+      <h2 class="tarja">Uma arte. O kit inteiro.</h2>
+      <p class="texto-grande">Você aprova o layout uma vez e ele vale para caneca, camiseta, moletom e tirante. Não cobramos criação de novo a cada item.</p>
+
+      <div class="kit__controle" role="group" aria-label="Ver a arte em cada produto" hidden>
+        <button type="button" data-kit-foco="kit" aria-pressed="true">Kit</button>
+        <button type="button" data-kit-foco="moletom" aria-pressed="false">Moletom</button>
+        <button type="button" data-kit-foco="caneca" aria-pressed="false">Caneca</button>
+        <button type="button" data-kit-foco="tirante" aria-pressed="false">Tirante</button>
       </div>
+      <p class="kit__legenda" aria-live="polite" data-kit-legenda>A mesma arte da arara no moletom, na caneca e no tirante da turma.</p>
     </div>
   </section>
 
   <!-- ============ PRODUTOS ============ -->
-  <section class="section" id="produtos">
-    <div class="wrap">
-      <div class="section__head section__head--split">
-        <div class="section__intro">
-          <p class="eyebrow">O que a gente personaliza</p>
-          <h2>A mesma arte em tudo que a turma pedir.</h2>
-          <p class="lead">Você aprova o layout uma vez e ele vale para caneca, camiseta, moletom e tirante. Não cobramos criação de novo a cada item.</p>
-        </div>
-        <a class="btn btn--ghost" data-wa href="https://wa.me/5551999268517">Faça seu orçamento</a>
-      </div>
+  <section class="muro-largura muro secao produtos" id="produtos">
+    <article class="cartaz produto produto--moletons">
+      <figure class="produto__foto">
+        <img src="img/moletom2.jpg" alt="Moletom off-white com arte Ter After Ter 2026 nas costas e o nome Duda" width="1000" height="1333" loading="lazy">
+        <figcaption class="etiqueta">Ter After Ter 2026 · Duda</figcaption>
+      </figure>
+      <h3 class="tarja tarja--pequena">Moletons</h3>
+      <p>Moletom com capuz, arte grande nas costas e o nome de cada um na frente.</p>
+    </article>
 
-      <div class="grid grid--4">
-        <article class="card card--product">
-          <figure class="frame"><img src="img/caneca2.jpg" alt="Caneca térmica branca personalizada com arte de terceirão" width="1000" height="1333" loading="lazy"></figure>
-          <div class="card__body">
-            <h3>Canecas</h3>
-            <p>Canecas térmicas com a arte da turma e o nome de cada formando.</p>
-          </div>
-        </article>
-
-        <article class="card card--product">
-          <figure class="frame"><img src="img/camiseta.jpg" alt="Camiseta de terceirão azul-marinho com as assinaturas da turma" width="1000" height="1333" loading="lazy"></figure>
-          <div class="card__body">
-            <h3>Camisetas</h3>
-            <p>Arte no verso, nome na frente e espaço para as assinaturas de todo mundo.</p>
-          </div>
-        </article>
-
-        <article class="card card--product">
-          <figure class="frame"><img src="img/moletom2.jpg" alt="Moletom de formatura off-white com arte grande nas costas" width="1000" height="1333" loading="lazy"></figure>
-          <div class="card__body">
-            <h3>Moletons</h3>
-            <p>Moletom com capuz, arte grande nas costas e o nome de cada um na frente.</p>
-          </div>
-        </article>
-
-        <article class="card card--product">
-          <figure class="frame"><img src="img/caneca.jpg" alt="Caneca térmica preta cercada de tirantes personalizados verdes" width="1000" height="1333" loading="lazy"></figure>
-          <div class="card__body">
-            <h3>Tirantes</h3>
-            <p>Impressão colorida no cordão inteiro, combinando com a caneca e com a arte da turma.</p>
-          </div>
-        </article>
-      </div>
+    <div class="cartaz produtos__cabeca rasgo-esq">
+      <h2 class="tarja">Caneca, camiseta, moletom e tirante.</h2>
+      <p class="texto-grande">Todos com a arte da sua turma e o nome de cada formando.</p>
     </div>
-  </section>
 
-  <!-- ============ VANTAGENS ============ -->
-  <section class="section section--alt">
-    <div class="wrap">
-      <div class="section__head">
-        <p class="eyebrow">Vantagens</p>
-        <h2>O que a sua turma ganha fechando com a gente.</h2>
-      </div>
+    <article class="cartaz produto produto--canecas">
+      <figure class="produto__foto">
+        <img src="img/caneca2.jpg" alt="Caneca térmica branca Terceirão 2026 dos Formandos 311, com o nome Douglas e tirante vinho" width="1000" height="1333" loading="lazy">
+        <figcaption class="etiqueta">Formandos 311 · Terceirão 2026</figcaption>
+      </figure>
+      <h3 class="tarja tarja--pequena">Canecas</h3>
+      <p>Canecas térmicas com a arte da turma e o nome de cada formando.</p>
+    </article>
 
-      <div class="perks">
-        <div class="perk">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15.5 4.5 19.5 8.5 9 19H5v-4L15.5 4.5Z"/><path d="m13.5 6.5 4 4"/></svg>
-          <h3>Arte criada sem custo</h3>
-          <p>A gente transforma sua ideia em layout e você não paga nada a mais por isso. Zero custo, zero complicação.</p>
+    <article class="cartaz produto produto--camisetas">
+      <figure class="produto__foto">
+        <img src="img/camiseta.jpg" alt="Camiseta azul-marinho de terceirão com as assinaturas da turma e o nome Vitor" width="1000" height="1333" loading="lazy">
+        <figcaption class="etiqueta">Terceirão · assinaturas da turma</figcaption>
+      </figure>
+      <h3 class="tarja tarja--pequena">Camisetas</h3>
+      <p>Arte no verso, nome na frente e espaço para as assinaturas de todo mundo.</p>
+    </article>
+
+    <article class="cartaz produto produto--tirantes">
+      <figure class="produto__foto">
+        <img src="img/caneca.jpg" alt="Tirantes verdes e pretos Terceirão 2026 com assinaturas, em volta de uma caneca preta" width="1000" height="1333" loading="lazy">
+        <figcaption class="etiqueta">Terceirão 2026 · tirantes assinados</figcaption>
+      </figure>
+      <h3 class="tarja tarja--pequena">Tirantes</h3>
+      <p>Impressão colorida no cordão inteiro, combinando com a caneca e com a arte da turma.</p>
+    </article>
+
+    <div class="cartaz cartaz--velho vantagens rasgo-esq">
+      <h3 class="tarja tarja--pequena">Sem novela.</h3>
+      <dl class="vantagens__lista">
+        <div>
+          <dt>Entrega no prazo</dt>
+          <dd>Prazo aqui é coisa séria. Seu pedido chega direitinho na data combinada, sem novela.</dd>
         </div>
-        <div class="perk">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg>
-          <h3>Entrega no prazo</h3>
-          <p>Prazo aqui é coisa séria. Seu pedido chega direitinho na data combinada, sem novela.</p>
+        <div>
+          <dt>Gente de verdade</dt>
+          <dd>Chega de falar com robô. Aqui você conversa com gente pronta para te ouvir e ajudar.</dd>
         </div>
-        <div class="perk">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.5 12.5c0 4-3.8 7.2-8.5 7.2-1 0-2-.15-2.9-.42L4 21l1.3-3.6C4.2 16.1 3.5 14.4 3.5 12.5c0-4 3.8-7.2 8.5-7.2s8.5 3.2 8.5 7.2Z"/></svg>
-          <h3>Atendimento humanizado</h3>
-          <p>Chega de falar com robô. Aqui você conversa com gente de verdade, pronta para te ouvir e ajudar.</p>
-        </div>
-        <div class="perk">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3.5 8.5h17V20h-17z"/><path d="M3.5 8.5 12 4l8.5 4.5M12 4v16"/></svg>
-          <h3>Pedido mínimo de 10 unidades</h3>
-          <p>Com 10 unidades a gente já coloca a mão na massa.</p>
-        </div>
-        <div class="perk">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7.5h11v9H2z"/><path d="M13 10.5h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>
-          <h3>Envio para todo o Brasil</h3>
-          <p>Não importa em qual canto do país você esteja, a gente faz o seu pedido chegar voando até aí.</p>
-        </div>
-        <div class="perk perk--cta">
-          <h3>Ficou alguma dúvida?</h3>
-          <p>Chama no WhatsApp. A gente monta o orçamento sem compromisso nenhum.</p>
-          <a class="link-arrow" data-wa href="https://wa.me/5551999268517">Faça seu orçamento <span aria-hidden="true">→</span></a>
-        </div>
-      </div>
+      </dl>
     </div>
   </section>
 
   <!-- ============ TRABALHOS ============ -->
-  <section class="section" id="trabalhos">
-    <div class="wrap">
-      <div class="section__head">
-        <p class="eyebrow">Trabalhos entregues</p>
-        <h2>Algumas turmas que já fecharam com a gente.</h2>
-        <p class="lead">Cada arte é desenhada do zero para o grupo. Nada de catálogo pronto ou modelo reaproveitado de outra turma.</p>
-      </div>
+  <section class="muro-largura muro secao trabalhos" id="trabalhos">
+    <figure class="cartaz cartaz--foto trabalhos__a">
+      <img src="img/turma2.jpg" alt="Turma de formatura ao ar livre erguendo canecas e tirantes personalizados" width="1400" height="1207" loading="lazy">
+      <figcaption class="etiqueta">Turma inteira com caneca e tirante</figcaption>
+    </figure>
 
-      <div class="gallery">
-        <figure class="frame gallery__wide"><img src="img/turma2.jpg" alt="Turma de formatura ao ar livre erguendo canecas e tirantes personalizados" width="1400" height="1207" loading="lazy"></figure>
-        <figure class="frame"><img src="img/caneca3.jpg" alt="Caneca térmica personalizada de terceirão" width="1000" height="1333" loading="lazy"></figure>
-        <figure class="frame"><img src="img/camiseta2.jpg" alt="Camiseta de terceirão personalizada" width="1000" height="1333" loading="lazy"></figure>
-        <figure class="frame gallery__wide"><img src="img/turma1.jpg" alt="Turma de formatura em escadaria usando camisetas e tirantes personalizados" width="1400" height="1251" loading="lazy"></figure>
-        <figure class="frame"><img src="img/moletom.jpg" alt="Dupla de moletons de formatura personalizados" width="1400" height="1749" loading="lazy"></figure>
-        <figure class="frame"><img src="img/caneca.jpg" alt="Caneca e tirantes personalizados de terceirão" width="1000" height="1333" loading="lazy"></figure>
-      </div>
+    <div class="cartaz trabalhos__cabeca rasgo-topo">
+      <h2 class="tarja">Turmas que já fecharam com a gente.</h2>
+      <p class="texto-grande">Cada arte é desenhada do zero para o grupo. Nada de catálogo pronto ou modelo reaproveitado de outra turma.</p>
     </div>
+
+    <figure class="cartaz cartaz--foto trabalhos__b">
+      <img src="img/turma1.jpg" alt="Turma de formatura na escadaria usando camisetas e tirantes personalizados" width="1400" height="1251" loading="lazy">
+      <figcaption class="etiqueta">Etec · camisetas e tirantes 2025</figcaption>
+    </figure>
+
+    <figure class="cartaz cartaz--foto trabalhos__c">
+      <img src="img/camiseta2.jpg" alt="Camiseta preta Terceirão 2025 com tirante e caneca na mesma arte azul" width="1000" height="1110" loading="lazy">
+      <figcaption class="etiqueta">Terceirão 2025 · camiseta, tirante e caneca</figcaption>
+    </figure>
+
+    <figure class="cartaz cartaz--foto trabalhos__d">
+      <img src="img/caneca3.jpg" alt="Caneca térmica preta Terceirão 2026 com ampulheta desenhada e o nome Dani" width="1000" height="1333" loading="lazy">
+      <figcaption class="etiqueta">Terceirão 2026 · caneca térmica</figcaption>
+    </figure>
   </section>
 
   <!-- ============ GARANTIAS ============ -->
-  <section class="section section--alt" id="garantias">
-    <div class="wrap">
-      <div class="section__head">
-        <p class="eyebrow">Segurança na compra</p>
-        <h2>Quatro garantias por escrito.</h2>
-        <p class="lead">Comprar personalizado pela internet dá insegurança, e com razão. Por isso a gente deixa tudo combinado antes de você pagar qualquer coisa.</p>
+  <section class="muro-largura muro secao" id="garantias">
+    <div class="cartaz garantias">
+      <div class="garantias__cabeca">
+        <h2 class="tarja">Tudo combinado por escrito.</h2>
+        <p class="texto-grande">Comprar personalizado pela internet dá insegurança, e com razão. Por isso a gente deixa tudo combinado antes de você pagar qualquer coisa.</p>
       </div>
 
-      <div class="grid grid--2">
-        <article class="card card--guarantee">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3 4.5 6v5.6c0 4.4 3.1 8.1 7.5 9.4 4.4-1.3 7.5-5 7.5-9.4V6L12 3Z"/><path d="m9.3 12.2 1.9 1.9 3.6-3.9"/></svg>
-          </div>
-          <div>
-            <p class="card__num">01</p>
-            <h3>Empresa 100% regularizada e emissão de NF</h3>
-            <p>Atuamos com total transparência e responsabilidade fiscal. Todos os nossos pedidos acompanham Nota Fiscal, garantindo a segurança jurídica da sua compra e contribuindo para o desenvolvimento do país.</p>
-          </div>
-        </article>
+      <dl class="garantias__lista">
+        <div>
+          <dt>Nota fiscal em todo pedido.</dt>
+          <dd>Empresa 100% regularizada. Todo pedido sai com NF, o que facilita a prestação de contas com a turma e com a escola.</dd>
+        </div>
+        <div>
+          <dt>Deu defeito, a gente troca.</dt>
+          <dd>Falha de impressão ou defeito de fabricação é trocado sem nenhum custo para você.</dd>
+        </div>
+        <div>
+          <dt>Extraviou, você recebe de volta.</dt>
+          <dd>Envio por Correios ou transportadora credenciada, com seguro total. Em caso de extravio ou roubo, reembolso integral.</dd>
+        </div>
+        <div>
+          <dt>Metade agora, metade no fim.</dt>
+          <dd>50% no fechamento para começar a produção e 50% só quando o pedido estiver pronto para envio.</dd>
+        </div>
+      </dl>
 
-        <article class="card card--guarantee">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h11v9a4 4 0 0 1-4 4H8a4 4 0 0 1-4-4V7Z"/><path d="M15 10h2.5a2.5 2.5 0 0 1 0 5H15"/><path d="m7.5 12.5 1.7 1.7 2.8-3.2"/></svg>
-          </div>
-          <div>
-            <p class="card__num">02</p>
-            <h3>Garantia total de qualidade</h3>
-            <p>Seus produtos contam com garantia contra eventuais falhas de impressão ou defeitos de fabricação. Identificou qualquer divergência? Efetuamos a troca sem nenhum custo adicional para você.</p>
-          </div>
-        </article>
-
-        <article class="card card--guarantee">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 7.5h11v9H2z"/><path d="M13 10.5h4l3 3v3h-7z"/><circle cx="6" cy="18" r="1.8"/><circle cx="17" cy="18" r="1.8"/></svg>
-          </div>
-          <div>
-            <p class="card__num">03</p>
-            <h3>Envio seguro com proteção de carga</h3>
-            <p>Nossas entregas são feitas via Correios ou transportadoras credenciadas, com seguro total contratado. Em caso de extravio ou roubo durante o transporte, garantimos o reembolso integral do seu investimento.</p>
-          </div>
-        </article>
-
-        <article class="card card--guarantee">
-          <div class="card__icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5h18v11H3z"/><path d="M3 10.5h18"/><path d="M7 14.5h4"/></svg>
-          </div>
-          <div>
-            <p class="card__num">04</p>
-            <h3>Facilidade de pagamento (50/50)</h3>
-            <p>Para sua total tranquilidade, oferecemos a opção de pagamento fracionado: 50% no fechamento do pedido para iniciar a produção e 50% apenas quando a mercadoria estiver pronta para o envio. Parceria justa e segura para ambos os lados.</p>
-          </div>
-        </article>
-      </div>
+      <p class="garantias__rodape">Avanti Personalizados · CNPJ <span class="numeros">41.866.783/0001-71</span> · Arvorezinha/RS</p>
     </div>
   </section>
 
   <!-- ============ COMO FUNCIONA ============ -->
-  <section class="section" id="processo">
-    <div class="wrap">
-      <div class="section__head">
-        <p class="eyebrow">Como funciona a compra</p>
-        <h2>Como funciona, do orçamento à entrega.</h2>
-      </div>
-
-      <ol class="steps">
-        <li class="step step--active">
-          <span class="step__num">01</span>
-          <h3>Faça seu orçamento</h3>
-          <p>Clique no botão "Faça seu orçamento" para conversar diretamente com a nossa equipe.</p>
+  <section class="muro-largura muro secao processo" id="processo">
+    <div class="cartaz processo__cartaz">
+      <h2 class="tarja">Do orçamento à entrega.</h2>
+      <ol class="processo__lista">
+        <li>
+          <span class="processo__numero" aria-hidden="true">1</span>
+          <h3>Chama no WhatsApp</h3>
+          <p>Toque em Faça seu orçamento e fale direto com a nossa equipe.</p>
         </li>
-        <li class="step">
-          <span class="step__num">02</span>
+        <li>
+          <span class="processo__numero" aria-hidden="true">2</span>
           <h3>Atendimento personalizado</h3>
-          <p>Nossa equipe está pronta para te atender, tirar dúvidas e criar um orçamento sob medida para o seu projeto.</p>
+          <p>A gente tira suas dúvidas e monta um orçamento sob medida para a turma.</p>
         </li>
-        <li class="step">
-          <span class="step__num">03</span>
-          <h3>Criação da arte (100% grátis)</h3>
-          <p>Diga como você imagina seu layout e nós criamos para você. É grátis, sem compromisso e do seu jeito.</p>
+        <li>
+          <span class="processo__numero" aria-hidden="true">3</span>
+          <h3>Arte 100% grátis</h3>
+          <p>Diga como você imagina o layout e a gente cria. Sem compromisso e do seu jeito.</p>
         </li>
-        <li class="step">
-          <span class="step__num">04</span>
+        <li>
+          <span class="processo__numero" aria-hidden="true">4</span>
           <h3>Produção dedicada</h3>
-          <p>Pedido aprovado? Agora é com a gente. Produzimos tudo com muito carinho, qualidade e atenção a cada detalhe.</p>
+          <p>Pedido aprovado? Agora é com a gente, com qualidade e atenção a cada detalhe.</p>
         </li>
-        <li class="step">
-          <span class="step__num">05</span>
+        <li>
+          <span class="processo__numero" aria-hidden="true">5</span>
           <h3>Entrega na sua casa</h3>
-          <p>Enviamos seu pedido via Correios ou transportadora, garantindo que tudo chegue com segurança e praticidade direto na sua porta.</p>
+          <p>Por Correios ou transportadora, com segurança, direto na sua porta.</p>
         </li>
       </ol>
+    </div>
+
+    <div class="processo__acao">
+      <a class="tira" data-wa href="https://wa.me/5551999268517" target="_blank" rel="noopener">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Zm4.66 10.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.65.81-.79.98-.15.16-.29.18-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
+        <span>Faça seu orçamento</span>
+      </a>
     </div>
   </section>
 
   <!-- ============ INSTAGRAM ============ -->
-  <section class="section section--alt" id="instagram">
-    <div class="wrap">
-      <div class="section__head section__head--split">
-        <div class="section__intro">
-          <p class="eyebrow">No Instagram</p>
-          <h2>Acompanhe a gente por lá.</h2>
-          <p class="lead">Os pedidos que saem daqui e os bastidores da produção ficam por lá. Segue a gente para ver as artes mais recentes.</p>
-        </div>
-        <a class="btn btn--ghost" data-instagram href="#">
-          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg>
-          <span data-cfg="instagramDisplay">[@INSTAGRAM]</span>
-        </a>
-      </div>
+  <section class="muro-largura muro secao" id="instagram">
+    <div class="cartaz insta__cabeca">
+      <h2 class="tarja">Os pedidos saindo daqui.</h2>
+      <p class="texto-grande">Os pedidos que saem daqui e os bastidores da produção ficam no Instagram. Segue a gente para ver as artes mais recentes.</p>
+      <a class="link-tinta" data-instagram href="https://instagram.com/canecasulcanecas" target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg>
+        <span data-cfg="instagramDisplay">@canecasulcanecas</span>
+      </a>
     </div>
 
-    <div class="ig-strip wrap">
+    <div class="insta__faixa">
       <div class="swiper ig-swiper">
         <div class="swiper-wrapper">
-          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/DYQZYpVjUvG/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Caneca térmica preta do curso Técnico em Agropecuária do CEDUP, turma 25/27, com tirante verde"><img src="img/instagram/post-1.jpg" alt="Caneca térmica preta do curso Técnico em Agropecuária do CEDUP, turma 25/27, com tirante verde" width="640" height="640" loading="lazy"><span class="ig-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg></span></a></div>
-          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/DUEPqyOkYi9/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Moletom off-white de formatura com arte &quot;Ter After 2026&quot; em grafite azul e o nome Duda"><img src="img/instagram/post-2.jpg" alt="Moletom off-white de formatura com arte &quot;Ter After 2026&quot; em grafite azul e o nome Duda" width="640" height="640" loading="lazy"><span class="ig-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg></span></a></div>
-          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/DJUq75KxoRh/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Caneca térmica preta com frase de terceirão, ao lado de camiseta e tirante personalizados"><img src="img/instagram/post-3.jpg" alt="Caneca térmica preta com frase de terceirão, ao lado de camiseta e tirante personalizados" width="640" height="640" loading="lazy"><span class="ig-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg></span></a></div>
-          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/DdJ4LbSkfEJ/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Caneca térmica preta com arte Terceirão 2026 em vermelho"><img src="img/instagram/post-4.jpg" alt="Caneca térmica preta com arte Terceirão 2026 em vermelho" width="640" height="640" loading="lazy"><span class="ig-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg></span></a></div>
-          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/Dct6WNqFh7s/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Moletom preto com o logo da GB Metalúrgica aplicado nas costas"><img src="img/instagram/post-5.jpg" alt="Moletom preto com o logo da GB Metalúrgica aplicado nas costas" width="640" height="640" loading="lazy"><span class="ig-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg></span></a></div>
-          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/Dcg129blpFw/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Caneca térmica branca com arte Terceirão 303 em azul"><img src="img/instagram/post-6.jpg" alt="Caneca térmica branca com arte Terceirão 303 em azul" width="640" height="640" loading="lazy"><span class="ig-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg></span></a></div>
-          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/DcOwN0jke86/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Camiseta preta de Técnico em Enfermagem com ilustrações e o nome Lilian"><img src="img/instagram/post-7.jpg" alt="Camiseta preta de Técnico em Enfermagem com ilustrações e o nome Lilian" width="640" height="640" loading="lazy"><span class="ig-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg></span></a></div>
-          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/Dbq9ereFk-N/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Caneca térmica preta Terceirão 2026 em vinho, com tirantes assinados"><img src="img/instagram/post-8.jpg" alt="Caneca térmica preta Terceirão 2026 em vinho, com tirantes assinados" width="640" height="640" loading="lazy"><span class="ig-card__mark" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg></span></a></div>
+          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/DYQZYpVjUvG/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Caneca térmica preta do curso Técnico em Agropecuária do CEDUP, turma 25/27, com tirante verde"><img src="img/instagram/post-1.jpg" alt="Caneca térmica preta do curso Técnico em Agropecuária do CEDUP, turma 25/27, com tirante verde" width="640" height="640" loading="lazy"><span class="ig-card__etiqueta">CEDUP 25/27 · caneca e tirante</span></a></div>
+          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/DUEPqyOkYi9/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Moletom off-white de formatura com arte &quot;Ter After 2026&quot; em grafite azul e o nome Duda"><img src="img/instagram/post-2.jpg" alt="Moletom off-white de formatura com arte &quot;Ter After 2026&quot; em grafite azul e o nome Duda" width="640" height="640" loading="lazy"><span class="ig-card__etiqueta">Ter After 2026 · moletom</span></a></div>
+          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/DJUq75KxoRh/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Caneca térmica preta com frase de terceirão, ao lado de camiseta e tirante personalizados"><img src="img/instagram/post-3.jpg" alt="Caneca térmica preta com frase de terceirão, ao lado de camiseta e tirante personalizados" width="640" height="640" loading="lazy"><span class="ig-card__etiqueta">Terceirão · caneca, camiseta e tirante</span></a></div>
+          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/DdJ4LbSkfEJ/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Caneca térmica preta com arte Terceirão 2026 em vermelho"><img src="img/instagram/post-4.jpg" alt="Caneca térmica preta com arte Terceirão 2026 em vermelho" width="640" height="640" loading="lazy"><span class="ig-card__etiqueta">Terceirão 2026 · caneca</span></a></div>
+          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/Dcg129blpFw/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Caneca térmica branca com arte Terceirão 303 em azul"><img src="img/instagram/post-6.jpg" alt="Caneca térmica branca com arte Terceirão 303 em azul" width="640" height="640" loading="lazy"><span class="ig-card__etiqueta">Terceirão 303 · caneca</span></a></div>
+          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/DcOwN0jke86/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Camiseta preta de Técnico em Enfermagem com ilustrações e o nome Lilian"><img src="img/instagram/post-7.jpg" alt="Camiseta preta de Técnico em Enfermagem com ilustrações e o nome Lilian" width="640" height="640" loading="lazy"><span class="ig-card__etiqueta">Técnico em Enfermagem · camiseta</span></a></div>
+          <div class="swiper-slide"><a class="ig-card" href="https://www.instagram.com/p/Dbq9ereFk-N/" target="_blank" rel="noopener" aria-label="Abrir no Instagram: Caneca térmica preta Terceirão 2026 em vinho, com tirantes assinados"><img src="img/instagram/post-8.jpg" alt="Caneca térmica preta Terceirão 2026 em vinho, com tirantes assinados" width="640" height="640" loading="lazy"><span class="ig-card__etiqueta">Terceirão 2026 · caneca e tirantes</span></a></div>
         </div>
       </div>
 
-      <div class="ig-controls">
+      <div class="ig-controles">
         <div class="ig-pagination"></div>
         <div class="ig-nav">
-          <button class="icon-btn ig-nav--prev" type="button" aria-label="Post anterior">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
+          <button class="botao-icone ig-nav--prev" type="button" aria-label="Post anterior">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>
           </button>
-          <button class="icon-btn ig-nav--next" type="button" aria-label="Próximo post">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
+          <button class="botao-icone ig-nav--next" type="button" aria-label="Próximo post">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>
           </button>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============ FAQ ============ -->
-  <section class="section" id="faq">
-    <div class="wrap faq">
-      <div class="section__intro">
-        <p class="eyebrow">Dúvidas frequentes</p>
-        <h2>O que todo mundo pergunta antes de fechar.</h2>
-        <p class="lead">Ficou faltando alguma? Manda no WhatsApp que a gente responde.</p>
-      </div>
+  <!-- ============ DÚVIDAS ============ -->
+  <section class="muro-largura muro secao faq" id="faq">
+    <div class="cartaz faq__cabeca">
+      <h2 class="tarja">Antes de fechar.</h2>
+      <p class="texto-grande">O que todo mundo pergunta. Ficou faltando alguma? Manda no WhatsApp que a gente responde.</p>
+      <a class="link-acao" data-wa href="https://wa.me/5551999268517" target="_blank" rel="noopener">Mandar minha dúvida no WhatsApp</a>
+    </div>
 
-      <div class="faq__list">
-        <details class="qa" open>
-          <summary>Qual é o pedido mínimo?</summary>
-          <p>São 10 unidades. Com esse número a gente já coloca a mão na massa, então turma pequena também consegue fechar.</p>
-        </details>
-        <details class="qa">
-          <summary>Vocês fazem a arte ou eu preciso mandar pronta?</summary>
-          <p>A gente cria, e é 100% grátis. Você conta como imagina o layout, nós desenhamos e mandamos para aprovação. Se já tiver arte pronta, também aceitamos.</p>
-        </details>
-        <details class="qa">
-          <summary>Vocês enviam para a minha cidade?</summary>
-          <p>Enviamos para todo o Brasil, por Correios ou transportadora credenciada, sempre com seguro de carga.</p>
-        </details>
-        <details class="qa">
-          <summary>Qual é o prazo de produção e entrega?</summary>
-          <p>A produção leva <span data-cfg="prazoProducao">[PRAZO DE PRODUÇÃO]</span> dias úteis depois da aprovação da arte. O frete varia conforme a cidade e o prazo exato entra no orçamento.</p>
-        </details>
-        <details class="qa">
-          <summary>Como funciona o pagamento?</summary>
-          <p>50% no fechamento do pedido, para iniciar a produção, e 50% quando a mercadoria estiver pronta para envio. Aceitamos <span data-cfg="formasPagamento">[FORMAS DE PAGAMENTO]</span>.</p>
-        </details>
-        <details class="qa">
-          <summary>Vocês emitem nota fiscal?</summary>
-          <p>Sim, em todos os pedidos, sob o CNPJ 41.866.783/0001-71. Isso costuma facilitar para quem precisa prestar contas com a turma ou com a escola.</p>
-        </details>
-      </div>
+    <div class="cartaz faq__lista">
+      <details class="qa" open>
+        <summary>Qual é o pedido mínimo?</summary>
+        <p>São 10 unidades. Com esse número a gente já coloca a mão na massa, então turma pequena também consegue fechar.</p>
+      </details>
+      <details class="qa">
+        <summary>Vocês fazem a arte ou eu preciso mandar pronta?</summary>
+        <p>A gente cria, e é 100% grátis. Você conta como imagina o layout, nós desenhamos e mandamos para aprovação. Se já tiver arte pronta, também aceitamos.</p>
+      </details>
+      <details class="qa">
+        <summary>Vocês enviam para a minha cidade?</summary>
+        <p>Enviamos para todo o Brasil, por Correios ou transportadora credenciada, sempre com seguro de carga.</p>
+      </details>
+      <details class="qa">
+        <summary>Qual é o prazo de produção e entrega?</summary>
+        <p><span data-cfg-frase hidden>A produção leva <span data-cfg="prazoProducao"></span> dias úteis depois da aprovação da arte. </span>O frete e o prazo exato variam conforme a cidade e entram no orçamento.</p>
+      </details>
+      <details class="qa">
+        <summary>Como funciona o pagamento?</summary>
+        <p>50% no fechamento do pedido, para iniciar a produção, e 50% quando a mercadoria estiver pronta para envio.<span data-cfg-frase hidden> Aceitamos <span data-cfg="formasPagamento"></span>.</span></p>
+      </details>
+      <details class="qa">
+        <summary>Vocês emitem nota fiscal?</summary>
+        <p>Sim, em todos os pedidos, sob o CNPJ <span class="numeros">41.866.783/0001-71</span>. Isso costuma facilitar para quem precisa prestar contas com a turma ou com a escola.</p>
+      </details>
     </div>
   </section>
 
-  <!-- ============ CTA FINAL ============ -->
-  <section class="section section--flush">
-    <div class="wrap">
-      <div class="cta brand-dark">
-        <div class="cta__pattern" aria-hidden="true"></div>
-        <div class="cta__veil" aria-hidden="true"></div>
-        <div class="cta__inner">
-          <img class="logo cta__logo" src="img/logo.png" alt="Avanti" width="900" height="444" loading="lazy">
-          <h2>Peça seu orçamento e <em>veja a arte antes de decidir.</em></h2>
-          <p>A criação é 100% grátis e sem compromisso. Você só fecha o pedido com o layout pronto na sua frente.</p>
-          <p class="cta__note">
-            <a class="cta__zap" data-wa href="https://wa.me/5551999268517">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Z"/></svg>
-              WhatsApp <span data-cfg="whatsappDisplay">[CONFIRMAR NÚMERO]</span>
-            </a>
-            <span class="cta__prazo">respondemos em <span data-cfg="prazoResposta">[PRAZO DE RESPOSTA]</span></span>
-          </p>
-        </div>
-      </div>
+  <!-- ============ FECHAMENTO ============ -->
+  <section class="muro-largura secao fechamento" id="orcamento">
+    <div class="cartaz cartaz--banner fechamento__banner" role="img" aria-label="Padrão de grafite da Avanti"></div>
+
+    <div class="cartaz fechamento__oferta rasgo-topo">
+      <h2>Peça seu orçamento e veja a arte antes de decidir.</h2>
+      <p class="texto-grande">A criação é 100% grátis e sem compromisso. Você só fecha o pedido com o layout pronto na sua frente.</p>
+      <a class="tira" data-wa href="https://wa.me/5551999268517" target="_blank" rel="noopener">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Zm4.66 10.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.65.81-.79.98-.15.16-.29.18-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
+        <span>Faça seu orçamento</span>
+      </a>
+      <p class="fechamento__contato">WhatsApp <span class="numeros" data-cfg="whatsappDisplay">(51) 99926-8517</span><span data-cfg-frase hidden> · respondemos em <span data-cfg="prazoResposta"></span></span></p>
+      <ul class="fechamento__selos">
+        <li>Nota fiscal em todo pedido</li>
+        <li>50% só com o pedido pronto</li>
+        <li>CNPJ <span class="numeros">41.866.783/0001-71</span></li>
+      </ul>
     </div>
   </section>
 
 </main>
 
-<!-- ============ FOOTER ============ -->
-<footer class="footer">
-  <div class="wrap">
-    <div class="footer__cols">
-      <div class="footer__brand">
-        <img class="logo logo--color" src="img/logo.png" alt="Avanti" width="900" height="444" loading="lazy">
-        <img class="logo logo--mono" src="img/logo-alt.png" alt="Avanti" width="900" height="444" loading="lazy">
+<!-- ============ RODAPÉ ============ -->
+<footer class="rodape">
+  <div class="muro-largura">
+    <div class="rodape__colunas">
+      <div class="rodape__marca">
+        <img class="logo logo--cor" src="img/logo.png" alt="Avanti" width="900" height="444" loading="lazy">
+        <img class="logo logo--preto" src="img/logo-alt.png" alt="Avanti" width="900" height="444" loading="lazy">
         <p>Personalizados para turmas de terceirão e formatura, com criação de arte inclusa e envio para todo o Brasil.</p>
       </div>
 
-      <nav class="footer__col" aria-label="Produtos">
-        <h2>Produtos</h2>
-        <a href="#produtos">Canecas</a>
-        <a href="#produtos">Camisetas</a>
-        <a href="#produtos">Moletons</a>
-        <a href="#produtos">Tirantes</a>
-      </nav>
-
-      <nav class="footer__col" aria-label="A empresa">
-        <h2>A empresa</h2>
+      <nav class="rodape__coluna" aria-label="Na página">
+        <h2>Na página</h2>
+        <a href="#kit">A arte no kit</a>
+        <a href="#produtos">Produtos</a>
+        <a href="#trabalhos">Trabalhos</a>
         <a href="#garantias">Garantias</a>
         <a href="#processo">Como funciona</a>
-        <a href="#trabalhos">Trabalhos</a>
         <a href="#faq">Dúvidas</a>
       </nav>
 
-      <div class="footer__col">
+      <div class="rodape__coluna">
         <h2>Contato</h2>
-        <a class="footer__contact" data-wa href="https://wa.me/5551999268517">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Z"/></svg>
-          <span data-cfg="whatsappDisplay">[WHATSAPP]</span>
+        <a data-wa href="https://wa.me/5551999268517" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Z"/></svg>
+          <span class="numeros" data-cfg="whatsappDisplay">(51) 99926-8517</span>
         </a>
-        <a class="footer__contact" data-instagram href="#">
-          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg>
-          <span data-cfg="instagramDisplay">[@INSTAGRAM]</span>
+        <a data-instagram href="https://instagram.com/canecasulcanecas" target="_blank" rel="noopener">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" aria-hidden="true"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="3.8"/><circle cx="17" cy="7" r="0.9" fill="currentColor" stroke="none"/></svg>
+          <span data-cfg="instagramDisplay">@canecasulcanecas</span>
         </a>
         <address>
           Rua Celeste Fornari, 469<br>
@@ -497,16 +430,14 @@
       </div>
     </div>
 
-    <hr class="rule">
-
-    <div class="footer__base">
-      <p>© <span id="ano">2026</span> Avanti Personalizados · CNPJ 41.866.783/0001-71</p>
+    <div class="rodape__base">
+      <p>© <span id="ano">2026</span> Avanti Personalizados · CNPJ <span class="numeros">41.866.783/0001-71</span></p>
       <p>Todos os direitos reservados</p>
     </div>
   </div>
 </footer>
 
-<a class="wa-float" data-wa href="https://wa.me/5551999268517" aria-label="Falar no WhatsApp">
+<a class="zap-flutuante" data-wa href="https://wa.me/5551999268517" target="_blank" rel="noopener" aria-label="Fazer orçamento pelo WhatsApp">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Zm4.66 10.3c-.25-.13-1.48-.73-1.71-.81-.23-.09-.4-.13-.56.12-.17.25-.65.81-.79.98-.15.16-.29.18-.54.06-.25-.13-1.06-.39-2.01-1.24-.74-.66-1.24-1.48-1.39-1.73-.14-.25-.01-.38.11-.5.11-.11.25-.29.37-.44.13-.15.17-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.4-.42-.56-.43h-.47c-.17 0-.44.06-.67.31-.23.25-.87.85-.87 2.07 0 1.22.89 2.4 1.02 2.57.13.17 1.76 2.69 4.26 3.77.6.26 1.06.41 1.42.53.6.19 1.14.16 1.57.1.48-.07 1.48-.6 1.69-1.19.21-.58.21-1.08.15-1.19-.06-.11-.23-.17-.48-.29Z"/></svg>
 </a>
 

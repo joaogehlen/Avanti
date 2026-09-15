@@ -1,8 +1,9 @@
 /* =========================================================
    AVANTI — configuração do site
    Mexa SÓ neste arquivo para trocar contato e prazos.
-   Todo campo deixado em branco ("") mantém o placeholder
-   entre colchetes visível na página, para você não esquecer.
+   Todo campo deixado em branco ("") esconde a frase que
+   depende dele: o visitante nunca vê um [COLCHETE]. Preencha
+   o campo e a frase aparece sozinha.
    ========================================================= */
 
 window.AVANTI = {

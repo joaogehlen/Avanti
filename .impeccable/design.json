@@ -1,0 +1,177 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-09-15T12:00:00-03:00",
+  "title": "Design System: Avanti",
+  "extensions": {
+    "colorMeta": {
+      "acao": { "role": "primary", "displayName": "Roxo Spray", "canonical": "#A509FA", "tonalRamp": ["#1F0233", "#3D0563", "#5E0796", "#8406C9", "#A509FA", "#BD52FB", "#D69BFD", "#EFDDFE"] },
+      "acao-forte": { "role": "primary", "displayName": "Roxo Spray Carregado", "canonical": "#8406C9", "tonalRamp": ["#1F0233", "#3D0563", "#5E0796", "#8406C9", "#A509FA", "#BD52FB", "#D69BFD", "#EFDDFE"] },
+      "acao-tinta": { "role": "primary", "displayName": "Branco de Tira", "canonical": "#FFFFFF", "tonalRamp": ["#262626", "#474747", "#6B6B6B", "#919191", "#B5B5B5", "#D6D6D6", "#EDEDED", "#FFFFFF"] },
+      "papel": { "role": "neutral", "displayName": "Papel Offset", "canonical": "#F1EEE6", "tonalRamp": ["#221F19", "#3D3930", "#5B564A", "#7D776A", "#A29C8E", "#C7C1B3", "#E7E1D3", "#F1EEE6"] },
+      "papel-velho": { "role": "neutral", "displayName": "Papel Velho", "canonical": "#E7E1D3", "tonalRamp": ["#221F19", "#3D3930", "#5B564A", "#7D776A", "#A29C8E", "#C7C1B3", "#E7E1D3", "#F4F1EA"] },
+      "tinta": { "role": "neutral", "displayName": "Tinta Preta", "canonical": "#121014", "tonalRamp": ["#121014", "#221F26", "#3A363F", "#58535E", "#7B7682", "#A09BA6", "#C9C4CF", "#EEECF0"] },
+      "tinta-2": { "role": "neutral", "displayName": "Tinta Gasta", "canonical": "#3A363F", "tonalRamp": ["#121014", "#221F26", "#3A363F", "#58535E", "#7B7682", "#A09BA6", "#C9C4CF", "#EEECF0"] },
+      "tinta-3": { "role": "neutral", "displayName": "Tinta Clara", "canonical": "#58535E", "tonalRamp": ["#121014", "#221F26", "#3A363F", "#58535E", "#7B7682", "#A09BA6", "#C9C4CF", "#EEECF0"] },
+      "linha-papel": { "role": "neutral", "displayName": "Filete de Papel", "canonical": "rgba(18, 16, 20, 0.16)" },
+      "muro-noite": { "role": "neutral", "displayName": "Muro à Noite", "canonical": "#141216", "tonalRamp": ["#141216", "#1E1C22", "#2E2B33", "#46424C", "#67626D", "#A9A4AF", "#D2CED6", "#ECE9E2"] },
+      "muro-noite-2": { "role": "neutral", "displayName": "Muro à Noite, apoio", "canonical": "#1E1C22" },
+      "muro-noite-fg": { "role": "neutral", "displayName": "Giz no Muro à Noite", "canonical": "#ECE9E2" },
+      "muro-noite-fg-2": { "role": "neutral", "displayName": "Giz Apagado", "canonical": "#A9A4AF" },
+      "muro-noite-linha": { "role": "neutral", "displayName": "Emenda do Muro à Noite", "canonical": "rgba(236, 233, 226, 0.14)" },
+      "muro-dia": { "role": "neutral", "displayName": "Muro de Dia", "canonical": "#BFBAB0", "tonalRamp": ["#131115", "#3B3840", "#5E5A55", "#827D75", "#A39E94", "#B0AA9F", "#BFBAB0", "#DEDAD3"] },
+      "muro-dia-2": { "role": "neutral", "displayName": "Muro de Dia, apoio", "canonical": "#B0AA9F" },
+      "muro-dia-fg": { "role": "neutral", "displayName": "Carvão no Muro de Dia", "canonical": "#131115" },
+      "muro-dia-fg-2": { "role": "neutral", "displayName": "Carvão Apagado", "canonical": "#3B3840" },
+      "muro-dia-linha": { "role": "neutral", "displayName": "Emenda do Muro de Dia", "canonical": "rgba(19, 17, 21, 0.2)" }
+    },
+    "typographyMeta": {
+      "display": { "displayName": "Display", "purpose": "h1 da abertura e título do fechamento, impressos direto no papel, caixa alta." },
+      "headline": { "displayName": "Tarja", "purpose": "h2 de todo cartaz, sempre dentro da tarja preta, caixa alta." },
+      "title": { "displayName": "Tarja pequena", "purpose": "Títulos de produto e do cartaz Sem novela; mesmo corpo nos termos de garantias e vantagens." },
+      "label-acao": { "displayName": "Tira", "purpose": "Texto da tira roxa de orçamento; mesma voz na faixa de prova e nos botões do kit." },
+      "body-destaque": { "displayName": "Apoio", "purpose": "Parágrafo de apoio de cada cartaz, até 52ch." },
+      "body": { "displayName": "Texto", "purpose": "Texto corrido, passos e respostas do FAQ." },
+      "body-sm": { "displayName": "Texto pequeno", "purpose": "Descrições de produto e garantia, navegação e notas." },
+      "label": { "displayName": "Etiqueta", "purpose": "Etiqueta de tiragem com dados reais sobre as fotos e no card do Instagram." }
+    },
+    "shadows": [
+      { "name": "sombra-cartaz", "value": "0 1px 1px rgba(0, 0, 0, 0.16), 0 18px 30px -18px rgba(0, 0, 0, 0.55)", "purpose": "Papel colado no muro: todo cartaz e card do Instagram." },
+      { "name": "sombra-tira", "value": "0 2px 2px rgba(0, 0, 0, 0.2), 0 14px 22px -12px rgba(0, 0, 0, 0.6)", "purpose": "Tira roxa de ação." },
+      { "name": "sombra-flutuante", "value": "0 2px 2px rgba(0, 0, 0, 0.2), 0 14px 24px -12px rgba(0, 0, 0, 0.7)", "purpose": "Botão flutuante do WhatsApp." },
+      { "name": "sombra-etiqueta", "value": "0 8px 14px -10px rgba(0, 0, 0, 0.7)", "purpose": "Etiqueta de tiragem sobre a foto." },
+      { "name": "foco", "value": "outline: 3px solid #A509FA; outline-offset: 3px", "purpose": "Anel de foco global; na tira vira tinta (ou papel no cabeçalho escuro) com offset de 4px." }
+    ],
+    "motion": [
+      { "name": "ease-cola", "value": "cubic-bezier(0.16, 1, 0.3, 1)", "purpose": "Tira endireitando (0.35s), card do Instagram subindo (0.35s), cruz do FAQ (0.3s) e zoom do kit (0.9s)." },
+      { "name": "ease-cor", "value": "0.2s ease", "purpose": "Troca de cor, contorno e sublinhado em links, botões e navegação." },
+      { "name": "sem-revelacao", "value": "none", "purpose": "Não há animação de entrada nem revelação na rolagem; nenhum conteúdo depende de animação para aparecer." },
+      { "name": "movimento-reduzido", "value": "@media (prefers-reduced-motion: reduce) — animation/transition 0.01ms, scroll-behavior auto", "purpose": "Anula todo movimento para quem pede." }
+    ],
+    "breakpoints": [
+      { "name": "celular", "value": "max-width: 639px" },
+      { "name": "tablet", "value": "max-width: 1023px" },
+      { "name": "desktop", "value": "min-width: 1024px" }
+    ]
+  },
+  "components": [
+    {
+      "name": "Tira de ação",
+      "kind": "button",
+      "refersTo": "tira",
+      "description": "Botão primário e único de conversão: fita roxa torta que leva ao WhatsApp.",
+      "html": "<a class=\"ds-tira\" href=\"#\"><svg width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"currentColor\" aria-hidden=\"true\"><path d=\"M12.03 2A9.93 9.93 0 0 0 3.4 17.03L2.05 22l5.1-1.33A9.93 9.93 0 1 0 12.03 2Zm0 1.8a8.13 8.13 0 1 1-4.14 15.12l-.3-.18-3.03.79.81-2.95-.19-.31A8.13 8.13 0 0 1 12.03 3.8Z\"/></svg><span>Faça seu orçamento</span></a>",
+      "css": ".ds-tira { display: inline-flex; align-items: center; justify-content: center; gap: 0.45em; min-height: 60px; padding: 0.3em 0.95em 0.18em; background: #A509FA; color: #FFFFFF; font-family: 'League Gothic', 'Arial Narrow', sans-serif; font-size: 2.1rem; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none; white-space: nowrap; border-radius: 0; transform: rotate(-1.6deg); box-shadow: 0 2px 2px rgba(0,0,0,0.2), 0 14px 22px -12px rgba(0,0,0,0.6); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), background-color 0.2s ease; } .ds-tira svg { flex-shrink: 0; width: 0.72em; height: 0.72em; } .ds-tira:hover { background: #8406C9; transform: rotate(0deg) translateY(-1px); } .ds-tira:active { transform: rotate(0deg) translateY(1px); } .ds-tira:focus-visible { outline: 3px solid #121014; outline-offset: 4px; }"
+    },
+    {
+      "name": "Link de ação",
+      "kind": "button",
+      "refersTo": "link-acao",
+      "description": "Link secundário para o WhatsApp dentro de um cartaz, com sublinhado roxo grosso.",
+      "html": "<div class=\"ds-papel\"><a class=\"ds-link-acao\" href=\"#\">Mandar minha dúvida no WhatsApp</a></div>",
+      "css": ".ds-papel { background: #F1EEE6; padding: 24px; } .ds-link-acao { display: inline-flex; align-items: center; min-height: 44px; font-family: 'Archivo', system-ui, sans-serif; font-weight: 700; color: #121014; text-decoration: underline; text-decoration-color: #A509FA; text-decoration-thickness: 3px; text-underline-offset: 6px; transition: text-underline-offset 0.2s ease; } .ds-link-acao:hover { text-underline-offset: 3px; } .ds-link-acao:focus-visible { outline: 3px solid #A509FA; outline-offset: 3px; }"
+    },
+    {
+      "name": "Cartaz com tarja",
+      "kind": "card",
+      "refersTo": "cartaz",
+      "description": "O componente do mundo: papel com grão, canto reto, sombra de papel colado e título na tarja preta.",
+      "html": "<div class=\"ds-muro\"><div class=\"ds-cartaz\"><h2 class=\"ds-tarja\">Tudo combinado por escrito.</h2><p class=\"ds-apoio\">Comprar personalizado pela internet dá insegurança, e com razão. Por isso a gente deixa tudo combinado antes de você pagar qualquer coisa.</p></div></div>",
+      "css": ".ds-muro { background: #141216; padding: 32px; } .ds-cartaz { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 18px; padding: 40px; background: #F1EEE6; color: #121014; border-radius: 0; box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 18px 30px -18px rgba(0,0,0,0.55); } .ds-tarja { display: inline-block; margin: 0; padding: 0.14em 0.32em 0.02em; background: #121014; color: #F1EEE6; font-family: 'League Gothic', 'Arial Narrow', sans-serif; font-weight: 400; font-size: 3.2rem; line-height: 0.98; letter-spacing: 0.005em; text-transform: uppercase; -webkit-box-decoration-break: clone; box-decoration-break: clone; } .ds-apoio { margin: 0; font-family: 'Archivo', system-ui, sans-serif; font-size: 1.1875rem; line-height: 1.55; color: #3A363F; max-width: 52ch; }"
+    },
+    {
+      "name": "Cartaz sobreposto com borda rasgada",
+      "kind": "custom",
+      "refersTo": "cartaz",
+      "description": "Cartaz de texto colado por cima de um cartaz de foto; a borda rasgada aparece só no lado que cobre.",
+      "html": "<div class=\"ds-muro-sobre\"><div class=\"ds-foto\"></div><div class=\"ds-cartaz-sobre\"><h2 class=\"ds-tarja-p\">Uma arte. O kit inteiro.</h2></div></div>",
+      "css": ".ds-muro-sobre { display: grid; grid-template-columns: repeat(12, minmax(0,1fr)); gap: 14px; background: #141216; padding: 32px; } .ds-foto { grid-column: 1 / span 7; grid-row: 1; min-height: 240px; background: #121014; box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 18px 30px -18px rgba(0,0,0,0.55); } .ds-cartaz-sobre { grid-column: 7 / span 6; grid-row: 1; align-self: center; z-index: 2; position: relative; padding: 32px; background: #F1EEE6; box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 18px 30px -18px rgba(0,0,0,0.55); } .ds-cartaz-sobre::before { content: ''; position: absolute; top: 0; bottom: 0; left: -13px; width: 14px; background: #F1EEE6; clip-path: polygon(100% 0, 30% 0, 45% 8%, 10% 17%, 60% 26%, 25% 36%, 55% 47%, 5% 58%, 50% 68%, 20% 79%, 65% 89%, 35% 100%, 100% 100%); } .ds-tarja-p { display: inline-block; margin: 0; padding: 0.14em 0.32em 0.02em; background: #121014; color: #F1EEE6; font-family: 'League Gothic', 'Arial Narrow', sans-serif; font-weight: 400; font-size: 2.6rem; line-height: 0.98; text-transform: uppercase; }"
+    },
+    {
+      "name": "Faixa de prova (cartaz de tinta)",
+      "kind": "custom",
+      "refersTo": "cartaz-tinta",
+      "description": "Cartaz invertido em tinta preta com fatos curtos separados por losangos cinzas antes de cada item.",
+      "html": "<div class=\"ds-faixa\"><ul class=\"ds-faixa-lista\"><li>Arte grátis</li><li>Mínimo de 10 unidades</li><li>Envio para todo o Brasil</li></ul><p class=\"ds-faixa-desde\">Desde 2018 · +6 mil clientes atendidos</p></div>",
+      "css": ".ds-faixa { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 10px 24px; padding: 18px 30px 16px; background: #121014; color: #F1EEE6; box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 18px 30px -18px rgba(0,0,0,0.55); } .ds-faixa-lista { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: 0; padding: 0; list-style: none; font-family: 'League Gothic', 'Arial Narrow', sans-serif; font-size: 2rem; line-height: 1.05; letter-spacing: 0.02em; text-transform: uppercase; } .ds-faixa-lista li { display: inline-flex; align-items: center; gap: 0.32em; } .ds-faixa-lista li::before { content: ''; flex-shrink: 0; width: 0.22em; height: 0.22em; background: #8A8590; transform: translateY(-0.06em) rotate(45deg); } .ds-faixa-desde { margin: 0; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 600; color: #C9C4CF; }"
+    },
+    {
+      "name": "Foto com etiqueta de tiragem",
+      "kind": "chip",
+      "refersTo": "etiqueta",
+      "description": "Etiqueta de papel colada no canto da foto, só com dados reais.",
+      "html": "<figure class=\"ds-foto-etq\"><div class=\"ds-foto-img\"></div><figcaption class=\"ds-etiqueta\">Terceirão 2026 · moletom, caneca e tirante</figcaption></figure>",
+      "css": ".ds-foto-etq { position: relative; margin: 0; width: 320px; aspect-ratio: 4 / 5; overflow: hidden; background: #121014; box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 18px 30px -18px rgba(0,0,0,0.55); } .ds-foto-img { width: 100%; height: 100%; background: linear-gradient(160deg, #3A363F, #121014); } .ds-etiqueta { position: absolute; left: 14px; bottom: 14px; max-width: calc(100% - 28px); padding: 0.4rem 0.65rem 0.35rem; background: #F1EEE6; color: #121014; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.8125rem; font-weight: 700; line-height: 1.3; letter-spacing: 0.01em; font-stretch: 88%; box-shadow: 0 8px 14px -10px rgba(0,0,0,0.7); }"
+    },
+    {
+      "name": "Controle do kit",
+      "kind": "chip",
+      "refersTo": "kit-controle-botao",
+      "description": "Botões de contorno que aproximam a mesma arte em cada produto; ativo invertido em tinta.",
+      "html": "<div class=\"ds-papel-kit\"><div class=\"ds-kit\" role=\"group\" aria-label=\"Ver a arte em cada produto\"><button type=\"button\" aria-pressed=\"true\">Kit</button><button type=\"button\" aria-pressed=\"false\">Moletom</button><button type=\"button\" aria-pressed=\"false\">Caneca</button><button type=\"button\" aria-pressed=\"false\">Tirante</button></div></div>",
+      "css": ".ds-papel-kit { background: #F1EEE6; padding: 24px; } .ds-kit { display: flex; flex-wrap: wrap; gap: 10px; } .ds-kit button { min-height: 48px; padding: 0.3em 0.8em 0.16em; font-family: 'League Gothic', 'Arial Narrow', sans-serif; font-size: 1.6rem; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; color: #121014; background: transparent; border: 2px solid #121014; border-radius: 0; cursor: pointer; transition: background-color 0.2s ease, color 0.2s ease; } .ds-kit button:hover { background: rgba(18,16,20,0.08); } .ds-kit button[aria-pressed='true'] { background: #121014; color: #F1EEE6; } .ds-kit button:focus-visible { outline: 3px solid #A509FA; outline-offset: 3px; }"
+    },
+    {
+      "name": "Card do Instagram",
+      "kind": "card",
+      "refersTo": "ig-card",
+      "description": "Polaroide de papel com foto quadrada e etiqueta; sobe e gira levemente no hover.",
+      "html": "<div class=\"ds-muro-ig\"><a class=\"ds-ig-card\" href=\"#\"><span class=\"ds-ig-img\"></span><span class=\"ds-ig-etq\">Terceirão 2026 · caneca e tirantes</span></a></div>",
+      "css": ".ds-muro-ig { background: #141216; padding: 32px; } .ds-ig-card { display: block; width: 240px; padding: 8px 8px 12px; text-decoration: none; background: #F1EEE6; border-radius: 0; box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 18px 30px -18px rgba(0,0,0,0.55); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); } .ds-ig-img { display: block; aspect-ratio: 1; background: linear-gradient(160deg, #58535E, #121014); } .ds-ig-etq { display: block; padding: 10px 2px 0; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.8125rem; font-weight: 700; line-height: 1.3; font-stretch: 88%; color: #121014; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; } .ds-ig-card:hover { transform: translateY(-4px) rotate(-0.8deg); } .ds-ig-card:focus-visible { outline: 3px solid #A509FA; outline-offset: 3px; }"
+    },
+    {
+      "name": "Cabeçalho no muro",
+      "kind": "nav",
+      "refersTo": "botao-icone",
+      "description": "Navegação pintada no muro: links discretos, botão de ícone quadrado e tira pequena.",
+      "html": "<header class=\"ds-topo\"><strong class=\"ds-marca\">Avanti</strong><nav class=\"ds-nav\"><a href=\"#\">Produtos</a><a href=\"#\">Trabalhos</a><a href=\"#\">Garantias</a><a href=\"#\">Dúvidas</a></nav><button class=\"ds-icone\" type=\"button\" aria-label=\"Alternar tema\"><svg width=\"20\" height=\"20\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.9\" stroke-linecap=\"round\" stroke-linejoin=\"round\" aria-hidden=\"true\"><path d=\"M20 14.5A8.5 8.5 0 0 1 9.5 4a7 7 0 1 0 10.5 10.5Z\"/></svg></button><a class=\"ds-tira-p\" href=\"#\">Faça seu orçamento</a></header>",
+      "css": ".ds-topo { display: flex; align-items: center; gap: 24px; min-height: 76px; padding: 0 24px; background: #141216; border-bottom: 1px solid rgba(236,233,226,0.14); } .ds-marca { font-family: 'League Gothic', 'Arial Narrow', sans-serif; font-size: 2rem; font-weight: 400; color: #ECE9E2; text-transform: uppercase; margin-right: auto; } .ds-nav { display: flex; gap: 30px; } .ds-nav a { display: inline-flex; align-items: center; min-height: 44px; font-family: 'Archivo', system-ui, sans-serif; font-size: 0.9375rem; font-weight: 600; color: #A9A4AF; text-decoration: none; transition: color 0.2s ease; } .ds-nav a:hover { color: #ECE9E2; } .ds-icone { display: grid; place-items: center; width: 44px; height: 44px; padding: 0; border: 2px solid rgba(236,233,226,0.14); border-radius: 0; background: transparent; color: #ECE9E2; cursor: pointer; transition: border-color 0.2s ease; } .ds-icone:hover { border-color: #ECE9E2; } .ds-icone:focus-visible, .ds-nav a:focus-visible { outline: 3px solid #A509FA; outline-offset: 3px; } .ds-tira-p { display: inline-flex; align-items: center; min-height: 46px; padding: 0.24em 0.7em 0.12em; background: #A509FA; color: #FFFFFF; font-family: 'League Gothic', 'Arial Narrow', sans-serif; font-size: 1.5rem; line-height: 1; letter-spacing: 0.02em; text-transform: uppercase; text-decoration: none; transform: rotate(-1deg); transition: transform 0.35s cubic-bezier(0.16,1,0.3,1), background-color 0.2s ease; } .ds-tira-p:hover { background: #8406C9; transform: rotate(0deg) translateY(-1px); } .ds-tira-p:focus-visible { outline: 3px solid #ECE9E2; outline-offset: 4px; }"
+    },
+    {
+      "name": "Pergunta do FAQ",
+      "kind": "input",
+      "refersTo": "cartaz",
+      "description": "Acordeão nativo details/summary dentro do cartaz, com cruz de dois traços em tinta.",
+      "html": "<div class=\"ds-faq\"><details class=\"ds-qa\" open><summary>Qual é o pedido mínimo?</summary><p>São 10 unidades. Com esse número a gente já coloca a mão na massa, então turma pequena também consegue fechar.</p></details><details class=\"ds-qa\"><summary>Vocês emitem nota fiscal?</summary><p>Sim, em todos os pedidos.</p></details></div>",
+      "css": ".ds-faq { background: #F1EEE6; color: #121014; padding: 12px 36px; box-shadow: 0 1px 1px rgba(0,0,0,0.16), 0 18px 30px -18px rgba(0,0,0,0.55); } .ds-qa + .ds-qa { border-top: 1px solid rgba(18,16,20,0.16); } .ds-qa summary { position: relative; display: flex; align-items: center; min-height: 64px; padding: 16px 44px 16px 0; font-family: 'Archivo', system-ui, sans-serif; font-size: 1.125rem; font-weight: 700; line-height: 1.35; cursor: pointer; list-style: none; } .ds-qa summary::-webkit-details-marker { display: none; } .ds-qa summary::before, .ds-qa summary::after { content: ''; position: absolute; right: 6px; top: 50%; width: 18px; height: 3px; margin-top: -1.5px; background: #121014; transition: transform 0.3s cubic-bezier(0.16,1,0.3,1); } .ds-qa summary::after { transform: rotate(90deg); } .ds-qa[open] summary::after { transform: rotate(0deg); } .ds-qa summary:hover { text-decoration: underline; text-decoration-thickness: 2px; text-underline-offset: 5px; } .ds-qa summary:focus-visible { outline: 3px solid #A509FA; outline-offset: 3px; } .ds-qa p { margin: 0; padding: 0 0 24px; font-family: 'Archivo', system-ui, sans-serif; font-size: 1rem; line-height: 1.6; color: #3A363F; max-width: 64ch; }"
+    }
+  ],
+  "narrative": {
+    "northStar": "O Muro de Lambe-Lambe",
+    "overview": "A página é um muro de concreto com cartazes colados em grade rígida. Cada seção é um cartaz de papel offset quase branco, impresso em tinta preta, com um recado só. Os títulos saem em letra de tipo de madeira condensada, sempre em caixa alta e sempre dentro de uma tarja preta. O padrão de grafite da Avanti não é fundo de página: entra como mais um cartaz impresso colado na parede. O clima é de rua e de gráfica, autêntico sem ser bagunçado e sem virar brincadeira infantil.\n\nA densidade é de parede cheia: cartazes grandes, com a borda de um encostando ou passando por cima da do outro, separados por uma \"cola\" estreita de muro aparente. A ordem vem da grade de 12 colunas. O que parece colado à mão (sobreposição, borda rasgada, tira levemente torta) acontece sempre dentro dessa grade, nunca fora dela.\n\nO mundo recusa explicitamente o template de SaaS escuro que o site substituiu: rótulo pequeno, título, parágrafo e grade de cards iguais com cantos arredondados. O roxo da marca deixou de ser atmosfera; agora é tinta de ação.",
+    "keyCharacteristics": [
+      "Muro (fundo com grão) muda com o tema; cartazes nunca mudam.",
+      "Papel quente, tinta preta e um único roxo reservado para ação.",
+      "League Gothic em caixa alta para tudo que é \"impresso\"; Archivo para leitura.",
+      "Cantos retos em todo papel. Não existe raio de borda.",
+      "Grade de 12 colunas com cartazes sobrepostos e bordas rasgadas só na sobreposição.",
+      "Movimento pequeno que nunca esconde conteúdo."
+    ],
+    "rules": [
+      { "name": "The Roxo É Ação Rule", "body": "O roxo só pinta o que leva ao WhatsApp, além do foco e da seleção. Título, fundo, ícone decorativo, borda de cartaz ou destaque de texto em roxo quebram o mundo.", "section": "colors" },
+      { "name": "The Tema Só No Muro Rule", "body": "Trocar o tema muda apenas o muro, o cabeçalho, o rodapé e os controles colados direto nele (paginação, setas, ícones). Papel, tinta, tarja, etiqueta e fotos ficam idênticos nos dois temas.", "section": "colors" },
+      { "name": "The Caixa Alta É Impressão Rule", "body": "Tudo em League Gothic é caixa alta e peso 400. League Gothic não aparece em minúscula nem em texto corrido.", "section": "typography" },
+      { "name": "The Tarja Única Rule", "body": "Todo título de seção é a mesma tarja preta com texto em papel. Não existe outro estilo de título de seção, nem rótulo pequeno acima dele.", "section": "typography" },
+      { "name": "The Sombra É Papel Rule", "body": "Sombra só existe em coisa colada (cartaz, tira, etiqueta, card). Botões de contorno, navegação e controles do muro não têm sombra.", "section": "elevation" },
+      { "name": "The Rasgo Só Na Sobreposição Rule", "body": "A borda rasgada marca onde um cartaz cobre outro. Cartaz solto no muro fica com a borda limpa.", "section": "shapes" }
+    ],
+    "dos": [
+      "Do colocar todo conteúdo novo dentro de um cartaz de papel (papel, canto reto, sombra de cartaz) sobre o muro.",
+      "Do abrir cada cartaz de seção com a tarja preta em League Gothic caixa alta.",
+      "Do posicionar cartazes na grade de 12 colunas e sobrepor pelo menos um par por seção, com a borda rasgada no cartaz de cima.",
+      "Do usar a tira roxa torta, com o texto \"Faça seu orçamento\", como o único botão de conversão.",
+      "Do colar uma etiqueta de tiragem com dados reais em cada foto de produto ou turma.",
+      "Do manter o movimento pequeno e opcional: endireitar a tira, zoom do kit, card que sobe no hover, sempre anulado por `prefers-reduced-motion`.",
+      "Do mudar só os tokens de muro ao mexer em tema."
+    ],
+    "donts": [
+      "Don't usar roxo fora de ação (tira, WhatsApp, foco, seleção): nada de título, fundo, ícone ou borda roxos.",
+      "Don't arredondar cantos de papel, botão ou card.",
+      "Don't montar grade de cards iguais ou o padrão rótulo pequeno + título + parágrafo do template SaaS escuro.",
+      "Don't esconder conteúdo atrás de animação de entrada ou revelação na rolagem; todo cartaz é visível sem JavaScript e sem evento de scroll.",
+      "Don't mudar cor de papel, tinta ou cartaz entre os temas.",
+      "Don't colocar borda rasgada em cartaz que não cobre outro.",
+      "Don't escrever League Gothic em minúscula ou em texto corrido.",
+      "Don't inventar números, depoimentos, prazos ou dados de etiqueta; placeholder escondido é melhor que dado falso."
+    ]
+  }
+}
