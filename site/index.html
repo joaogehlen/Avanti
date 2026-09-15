@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="pt-BR" data-theme="dark">
+<html lang="pt-BR" data-theme="light">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Avanti — Personalizados para terceirão e formatura</title>
 <meta name="description" content="Canecas, camisetas, moletons e tirantes personalizados para turmas de terceirão e formatura. Criação de arte grátis, pedido mínimo de 10 unidades e envio para todo o Brasil.">
-<meta name="theme-color" content="#141216">
+<meta name="theme-color" content="#BFBAB0">
 <link rel="icon" type="image/png" href="img/favicon.png">
 <link rel="apple-touch-icon" href="img/favicon.png">
 <meta property="og:type" content="website">
@@ -21,13 +21,10 @@
 <link rel="stylesheet" href="css/styles.css">
 <script src="js/config.js"></script>
 <script>
-  // aplica o tema antes do primeiro paint: a escolha salva, senão a do sistema
+  // o tema claro é o padrão; antes do primeiro paint, só aplica a escolha salva da pessoa
   try {
     var t = localStorage.getItem('avanti-theme');
-    if (t !== 'light' && t !== 'dark') {
-      t = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-    }
-    document.documentElement.dataset.theme = t;
+    if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
   } catch (e) {}
 </script>
 </head>

@@ -186,8 +186,8 @@ Três materiais e uma tinta de ação: o muro, o papel, a tinta preta e o roxo.
 
 ### Muro (tema)
 Os tokens de muro existem em duas versões, trocadas por `data-theme` no `<html>`. Na CSS as duas usam os mesmos nomes (`--muro`, `--muro-2`, `--muro-fg`, `--muro-fg-2`, `--muro-linha`).
-- **Muro à Noite** (muro-noite, tema escuro, padrão): concreto quase preto com grão. Texto do muro em muro-noite-fg; navegação e rodapé secundários em muro-noite-fg-2.
-- **Muro de Dia** (muro-dia, tema claro): concreto cinza quente com grão. Texto em muro-dia-fg; secundário em muro-dia-fg-2.
+- **Muro de Dia** (muro-dia, tema claro, padrão): concreto cinza quente com grão. É o tema de toda primeira visita, com ou sem JavaScript. Texto em muro-dia-fg; secundário em muro-dia-fg-2.
+- **Muro à Noite** (muro-noite, tema escuro): concreto quase preto com grão, ativado pelo botão de tema e lembrado no `localStorage`. Texto do muro em muro-noite-fg; navegação e rodapé secundários em muro-noite-fg-2.
 - **muro-2** existe nos dois temas como tom de apoio do muro; hoje não tem uso visível na página.
 
 ### Named Rules

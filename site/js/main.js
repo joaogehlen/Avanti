@@ -8,13 +8,13 @@
   var root = document.documentElement;
 
   /* ---------- tema claro / escuro ----------
-     o <head> já aplicou a escolha salva ou a do sistema antes do paint */
+     o padrão é o claro; o <head> já aplicou a escolha salva antes do paint */
   var STORAGE_KEY = 'avanti-theme';
   var COR_TEMA = { dark: '#141216', light: '#BFBAB0' };
 
   function atualizarCorTema() {
     var meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.setAttribute('content', COR_TEMA[root.dataset.theme] || COR_TEMA.dark);
+    if (meta) meta.setAttribute('content', COR_TEMA[root.dataset.theme] || COR_TEMA.light);
   }
 
   function setTheme(theme) {

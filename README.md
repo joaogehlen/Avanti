@@ -166,9 +166,10 @@ o mesmo nome de arquivo e o site continua funcionando.
   conteúdo (a tira roxa endireitando no hover, o zoom do kit, o carrossel).
 - **O WhatsApp flutuante só existe em telas menores.** Ele some enquanto a abertura ou
   o fechamento estão na tela, porque os dois já têm o botão.
-- **O tema segue a preferência do sistema na primeira visita** e depois guarda a
-  escolha da pessoa no `localStorage`. Um script inline no `<head>` aplica o tema
-  (salvo ou do sistema) antes do primeiro paint, para não piscar.
+- **O tema claro (muro de dia) é o padrão** para toda primeira visita, com ou sem
+  JavaScript. Se a pessoa trocar para o escuro, a escolha fica guardada no
+  `localStorage`, e um script inline no `<head>` a aplica antes do primeiro paint,
+  para não piscar.
 - **O logo troca com o tema**: `logo.png` (colorido) no muro escuro, `logo-alt.png`
   (preto) no claro.
 - **O FAQ usa `<details>`/`<summary>` nativos** — acordeão acessível, funciona com
