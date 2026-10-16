@@ -130,11 +130,34 @@ a { color: inherit; }
 .cartaz--velho { background-color: var(--papel-velho); }
 .cartaz--tinta { background-color: var(--tinta); color: var(--papel); }
 .cartaz--banner {
+  position: relative;
+  overflow: hidden;
   background-color: #0B0916;
+}
+/* a arte fica numa camada própria: é ela que é "pintada" no muro e deriva depois */
+.banner__tinta {
+  position: absolute;
+  inset: -5%;
   background-image: url(../img/fundo.jpg);
   background-repeat: no-repeat;
   background-size: cover; /* uma impressão só, sem emendas de repetição */
   background-position: 50% 40%;
+  animation: pintar 1.2s cubic-bezier(0.16, 1, 0.3, 1) both,
+             deriva 120s 1.2s linear infinite alternate;
+}
+
+/* a passada do spray: a arte entra de um lado ao outro, na diagonal, e assenta */
+@keyframes pintar {
+  from { clip-path: polygon(0 0, 0 0, -26% 100%, -26% 100%); transform: scale(1.05); }
+  to { clip-path: polygon(0 0, 152% 0, 126% 100%, 0 100%); transform: scale(1); }
+}
+/* muro vivo: deriva lenta, quase imperceptível, sem mexer no layout */
+@keyframes deriva {
+  from { translate: -1.2% 0; }
+  to { translate: 1.2% 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .banner__tinta { animation: none; clip-path: none; transform: none; translate: none; }
 }
 .cartaz--foto { overflow: hidden; background-color: var(--tinta); }
 .cartaz--foto > img { width: 100%; height: 100%; object-fit: cover; }
@@ -914,8 +937,9 @@ a { color: inherit; }
 
   .abertura { grid-template-columns: minmax(0, 1fr); row-gap: 0; }
   /* faixa baixa: impressão única maior e recortada, para os logos lerem no celular */
-  .abertura__banner { grid-column: 1; grid-row: 1; min-height: clamp(220px, 52vw, 420px); background-size: max(760px, 130%) auto; background-position: 38% 28%; }
-  .fechamento__banner { background-size: max(760px, 110%) auto; background-position: 50% 30%; }
+  .abertura__banner { grid-column: 1; grid-row: 1; min-height: clamp(220px, 52vw, 420px); }
+  .abertura__banner .banner__tinta { background-size: max(760px, 130%) auto; background-position: 38% 28%; }
+  .fechamento__banner .banner__tinta { background-size: max(760px, 110%) auto; background-position: 50% 30%; }
   .abertura__oferta { grid-column: 1; grid-row: 2; margin: -64px 12px 0; }
   .abertura__faixa { grid-column: 1; grid-row: 3; margin: var(--cola) 12px 0; }
 

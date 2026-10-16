@@ -165,7 +165,7 @@ O mundo recusa explicitamente o template de SaaS escuro que o site substituiu: r
 - League Gothic em caixa alta para tudo que é "impresso"; Archivo para leitura.
 - Cantos retos em todo papel. Não existe raio de borda.
 - Grade de 12 colunas com cartazes sobrepostos e bordas rasgadas só na sobreposição.
-- Movimento pequeno que nunca esconde conteúdo.
+- Movimento pequeno que nunca esconde conteúdo, com um momento autoral: o banner de grafite é "pintado" no muro numa passada diagonal ao abrir a página (`@keyframes pintar`, 1,2s) e depois deriva devagar (`@keyframes deriva`, 120s, ida e volta). Só a camada `.banner__tinta` se move; nenhum texto ou foto depende disso para aparecer.
 
 ## Colors
 
@@ -297,14 +297,14 @@ Acordeão nativo `<details>` dentro de um cartaz. Pergunta em Archivo 700 1.125r
 - **Do** posicionar cartazes na grade de 12 colunas e sobrepor pelo menos um par por seção, com a borda rasgada no cartaz de cima.
 - **Do** usar a tira roxa torta, com o texto "Faça seu orçamento", como o único botão de conversão.
 - **Do** colar uma etiqueta de tiragem com dados reais em cada foto de produto ou turma.
-- **Do** manter o movimento pequeno e opcional: endireitar a tira, zoom do kit, card que sobe no hover, sempre anulado por `prefers-reduced-motion`.
+- **Do** manter o movimento pequeno e opcional: a pintura e a deriva do banner, endireitar a tira, zoom do kit, card que sobe no hover, sempre anulado por `prefers-reduced-motion`.
 - **Do** mudar só os tokens de muro ao mexer em tema.
 
 ### Don't:
 - **Don't** usar roxo fora de ação (tira, WhatsApp, foco, seleção): nada de título, fundo, ícone ou borda roxos.
 - **Don't** arredondar cantos de papel, botão ou card.
 - **Don't** montar grade de cards iguais ou o padrão rótulo pequeno + título + parágrafo do template SaaS escuro.
-- **Don't** esconder conteúdo atrás de animação de entrada ou revelação na rolagem; todo cartaz é visível sem JavaScript e sem evento de scroll.
+- **Don't** esconder conteúdo atrás de animação de entrada ou revelação na rolagem; todo cartaz é visível sem JavaScript e sem evento de scroll. A animação do banner é a exceção permitida porque a camada animada é decorativa (`aria-hidden`) e roda por tempo, não por rolagem.
 - **Don't** mudar cor de papel, tinta ou cartaz entre os temas.
 - **Don't** colocar borda rasgada em cartaz que não cobre outro.
 - **Don't** escrever League Gothic em minúscula ou em texto corrido.
