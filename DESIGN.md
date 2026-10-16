@@ -165,7 +165,7 @@ O mundo recusa explicitamente o template de SaaS escuro que o site substituiu: r
 - League Gothic em caixa alta para tudo que é "impresso"; Archivo para leitura.
 - Cantos retos em todo papel. Não existe raio de borda.
 - Grade de 12 colunas com cartazes sobrepostos e bordas rasgadas só na sobreposição.
-- Movimento pequeno que nunca esconde conteúdo, com um momento autoral: o banner de grafite é "pintado" no muro numa passada diagonal ao abrir a página (`@keyframes pintar`, 1,2s) e depois deriva devagar (`@keyframes deriva`, 120s, ida e volta). Só a camada `.banner__tinta` se move; nenhum texto ou foto depende disso para aparecer.
+- Movimento pequeno que nunca esconde conteúdo, com um momento autoral no banner de grafite: a arte é "pintada" numa passada diagonal ao abrir (`@keyframes pintar`, 1,2s), desliza na diagonal em ciclo de 26s (`@keyframes deriva`) e tem pingos de tinta roxa escorrendo da borda de cima, que se alongam e encolhem continuamente (`@keyframes escorrer`, 9s e 12s em duas camadas, `--pingos-a` e `--pingos-b`). Só as camadas decorativas `.banner__tinta` e `.banner__pingos` se movem; nenhum texto ou foto depende disso para aparecer.
 
 ## Colors
 
@@ -297,7 +297,7 @@ Acordeão nativo `<details>` dentro de um cartaz. Pergunta em Archivo 700 1.125r
 - **Do** posicionar cartazes na grade de 12 colunas e sobrepor pelo menos um par por seção, com a borda rasgada no cartaz de cima.
 - **Do** usar a tira roxa torta, com o texto "Faça seu orçamento", como o único botão de conversão.
 - **Do** colar uma etiqueta de tiragem com dados reais em cada foto de produto ou turma.
-- **Do** manter o movimento pequeno e opcional: a pintura e a deriva do banner, endireitar a tira, zoom do kit, card que sobe no hover, sempre anulado por `prefers-reduced-motion`.
+- **Do** manter o movimento pequeno e opcional: a pintura, a deriva e os pingos do banner, endireitar a tira, zoom do kit, card que sobe no hover, sempre anulado por `prefers-reduced-motion`.
 - **Do** mudar só os tokens de muro ao mexer em tema.
 
 ### Don't:
