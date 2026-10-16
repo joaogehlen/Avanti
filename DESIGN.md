@@ -165,7 +165,7 @@ O mundo recusa explicitamente o template de SaaS escuro que o site substituiu: r
 - League Gothic em caixa alta para tudo que é "impresso"; Archivo para leitura.
 - Cantos retos em todo papel. Não existe raio de borda.
 - Grade de 12 colunas com cartazes sobrepostos e bordas rasgadas só na sobreposição.
-- Movimento pequeno que nunca esconde conteúdo.
+- Movimento pequeno que nunca esconde conteúdo, com um momento autoral no banner de grafite: a cada 7 segundos uma passada de spray atravessa a arte na diagonal, clareando o que toca (`.banner__spray`, `@keyframes repintar`). A faixa tem granulado para parecer tinta pulverizada, usa `mix-blend-mode: screen` e é uma camada decorativa: a arte nunca some e nada depende dela para aparecer.
 
 ## Colors
 

@@ -130,12 +130,39 @@ a { color: inherit; }
 .cartaz--velho { background-color: var(--papel-velho); }
 .cartaz--tinta { background-color: var(--tinta); color: var(--papel); }
 .cartaz--banner {
+  position: relative;
+  overflow: hidden;
   background-color: #0B0916;
   background-image: url(../img/fundo.jpg);
   background-repeat: no-repeat;
   background-size: cover; /* uma impressão só, sem emendas de repetição */
   background-position: 50% 40%;
 }
+/* passada de spray: a cada ciclo a arte é repintada, da esquerda para a direita */
+.banner__spray {
+  position: absolute;
+  top: -35%;
+  bottom: -35%;
+  left: 0;
+  width: 42%;
+  pointer-events: none;
+  mix-blend-mode: screen;
+  background-image: var(--grao-muro),
+    linear-gradient(90deg, transparent 0%, rgba(199, 123, 255, 0.34) 28%, rgba(222, 184, 255, 0.72) 46%, rgba(255, 255, 255, 0.85) 53%, rgba(165, 9, 250, 0.44) 68%, transparent 100%);
+  background-size: 150px 150px, 100% 100%;
+  background-blend-mode: multiply;
+  filter: blur(3px);
+  animation: repintar 7s linear infinite;
+}
+@keyframes repintar {
+  0% { transform: rotate(8deg) translate3d(-190%, 0, 0); }
+  38% { transform: rotate(8deg) translate3d(300%, 0, 0); }
+  100% { transform: rotate(8deg) translate3d(300%, 0, 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .banner__spray { display: none; }
+}
+
 .cartaz--foto { overflow: hidden; background-color: var(--tinta); }
 .cartaz--foto > img { width: 100%; height: 100%; object-fit: cover; }
 
