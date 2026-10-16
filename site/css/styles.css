@@ -930,7 +930,9 @@ a { color: inherit; }
   .produto--camisetas { grid-column: 7 / span 6; grid-row: 3; }
   .produto--camisetas .produto__foto { aspect-ratio: 4 / 5; }
   .produto--tirantes { grid-column: 1 / span 12; grid-row: 4; margin-top: 0; }
-  .vantagens { grid-column: 1 / span 12; grid-row: 5; margin: -40px 12px 0; }
+  .vantagens { grid-column: 1 / span 12; grid-row: 5; margin: var(--cola) 12px 0; }
+  /* sem sobrepor, o papel rasgado nao se justifica */
+  .vantagens.rasgo-esq::before { display: none; }
 
   .trabalhos__a { grid-column: 1 / span 12; grid-row: auto; height: clamp(260px, 56vw, 460px); }
   .trabalhos__cabeca { grid-column: 1 / span 12; grid-row: auto; margin: -56px 12px 0; }
@@ -977,7 +979,7 @@ a { color: inherit; }
   .produto--camisetas { grid-column: 1 / span 12; }
   .produto--camisetas { grid-row: 4; }
   .produto--tirantes { grid-row: 5; }
-  .vantagens { grid-row: 6; margin: -32px 8px 0; }
+  .vantagens { grid-row: 6; margin: var(--cola) 8px 0; }
   .trabalhos__cabeca { margin: -40px 8px 0; }
   .trabalhos__c, .trabalhos__d { grid-column: 1 / span 12; }
 
