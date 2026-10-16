@@ -117,7 +117,7 @@
   var LEGENDAS = {
     kit: 'A mesma arte da arara no moletom, na caneca e no tirante da turma.',
     moletom: 'No moletom: arte grande nas costas e o nome de cada um na frente.',
-    caneca: 'Na caneca térmica: a arte da turma e o nome de cada formando.',
+    caneca: 'Na caneca: a arte da turma e o nome de cada formando.',
     tirante: 'No tirante: impressão colorida no cordão inteiro, combinando com a caneca.'
   };
 

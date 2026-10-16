@@ -34,14 +34,14 @@ window.AVANTI_INSTAGRAM = {
   posts: [
     // --- fixados ---
     // `etiqueta` é a legenda curta colada embaixo da foto: só dados que aparecem no post
-    { img: 'img/instagram/post-1.jpg', url: 'https://www.instagram.com/p/DYQZYpVjUvG/', etiqueta: 'CEDUP 25/27 · caneca e tirante', alt: 'Caneca térmica preta do curso Técnico em Agropecuária do CEDUP, turma 25/27, com tirante verde' },
+    { img: 'img/instagram/post-1.jpg', url: 'https://www.instagram.com/p/DYQZYpVjUvG/', etiqueta: 'CEDUP 25/27 · caneca e tirante', alt: 'Caneca preta do curso Técnico em Agropecuária do CEDUP, turma 25/27, com tirante verde' },
     { img: 'img/instagram/post-2.jpg', url: 'https://www.instagram.com/p/DUEPqyOkYi9/', etiqueta: 'Ter After 2026 · moletom', alt: 'Moletom off-white de formatura com arte "Ter After 2026" em grafite azul e o nome Duda' },
-    { img: 'img/instagram/post-3.jpg', url: 'https://www.instagram.com/p/DJUq75KxoRh/', etiqueta: 'Terceirão · caneca, camiseta e tirante', alt: 'Caneca térmica preta com frase de terceirão, ao lado de camiseta e tirante personalizados' },
+    { img: 'img/instagram/post-3.jpg', url: 'https://www.instagram.com/p/DJUq75KxoRh/', etiqueta: 'Terceirão · caneca, camiseta e tirante', alt: 'Caneca preta com frase de terceirão, ao lado de camiseta e tirante personalizados' },
     // --- mais recentes ---
-    { img: 'img/instagram/post-4.jpg', url: 'https://www.instagram.com/p/DdJ4LbSkfEJ/', etiqueta: 'Terceirão 2026 · caneca', alt: 'Caneca térmica preta com arte Terceirão 2026 em vermelho' },
-    { img: 'img/instagram/post-6.jpg', url: 'https://www.instagram.com/p/Dcg129blpFw/', etiqueta: 'Terceirão 303 · caneca', alt: 'Caneca térmica branca com arte Terceirão 303 em azul' },
+    { img: 'img/instagram/post-4.jpg', url: 'https://www.instagram.com/p/DdJ4LbSkfEJ/', etiqueta: 'Terceirão 2026 · caneca', alt: 'Caneca preta com arte Terceirão 2026 em vermelho' },
+    { img: 'img/instagram/post-6.jpg', url: 'https://www.instagram.com/p/Dcg129blpFw/', etiqueta: 'Terceirão 303 · caneca', alt: 'Caneca branca com arte Terceirão 303 em azul' },
     { img: 'img/instagram/post-7.jpg', url: 'https://www.instagram.com/p/DcOwN0jke86/', etiqueta: 'Técnico em Enfermagem · camiseta', alt: 'Camiseta preta de Técnico em Enfermagem com ilustrações e o nome Lilian' },
-    { img: 'img/instagram/post-8.jpg', url: 'https://www.instagram.com/p/Dbq9ereFk-N/', etiqueta: 'Terceirão 2026 · caneca e tirantes', alt: 'Caneca térmica preta Terceirão 2026 em vinho, com tirantes assinados' }
+    { img: 'img/instagram/post-8.jpg', url: 'https://www.instagram.com/p/Dbq9ereFk-N/', etiqueta: 'Terceirão 2026 · caneca e tirantes', alt: 'Caneca preta Terceirão 2026 em vinho, com tirantes assinados' }
   ],
 
   /* ---------------------------------------------------------

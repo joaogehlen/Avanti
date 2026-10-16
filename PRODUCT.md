@@ -14,7 +14,7 @@ Consequência: o site não pode supor um único perfil. A linguagem é informal 
 
 ## Product Purpose
 
-A Avanti produz personalizados para turmas: canecas, camisetas, moletons e tirantes. O site é uma landing page de uma página só, e o objetivo dela é levar o visitante a chamar no WhatsApp e pedir um orçamento. Toda a venda (atendimento, orçamento, criação da arte, aprovação, pagamento) acontece no WhatsApp, fora do site.
+A Avanti produz personalizados: canecas, camisetas, moletons e tirantes. O público principal são turmas de terceirão e formatura, e o atendimento também vale para empresas, faculdades, grupos de amigos e eventos (confirmado pelo cliente em 16/10/2026, no documento ATUALIZAÇÕES DE SITE.docx). A abertura do site fala com todos esses públicos; o miolo segue escrito para turmas. O site é uma landing page de uma página só, e o objetivo dela é levar o visitante a chamar no WhatsApp e pedir um orçamento. Toda a venda (atendimento, orçamento, criação da arte, aprovação, pagamento) acontece no WhatsApp, fora do site.
 
 Sucesso significa uma turma chegando ao WhatsApp já confiando na empresa e entendendo que pode ver a arte pronta antes de decidir.
 

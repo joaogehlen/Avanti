@@ -379,7 +379,7 @@ a { color: inherit; }
 .abertura h1 {
   font-family: var(--f-cartaz);
   font-weight: 400;
-  font-size: clamp(3.3rem, 6vw, 5.5rem);
+  font-size: clamp(2.9rem, 4.6vw, 4.4rem);
   line-height: 0.92;
   letter-spacing: 0.004em;
   text-transform: uppercase;
@@ -495,6 +495,14 @@ a { color: inherit; }
 }
 .kit__controle button:hover { background: rgba(18, 16, 20, 0.08); }
 .kit__controle button[aria-pressed="true"] { background: var(--tinta); color: var(--papel); }
+.kit__chamada {
+  font-family: var(--f-cartaz);
+  font-size: clamp(1.5rem, 2vw, 1.9rem);
+  line-height: 1.05;
+  letter-spacing: 0.015em;
+  text-transform: uppercase;
+  color: var(--tinta);
+}
 .kit__legenda {
   font-size: 0.9375rem;
   font-weight: 600;
@@ -958,6 +966,9 @@ a { color: inherit; }
   .abertura__oferta { margin: -48px 8px 0; }
   .abertura__faixa { margin-inline: 8px; }
   .abertura__acao { flex-direction: column; align-items: stretch; }
+  /* espaco fixo para o botao flutuante do WhatsApp nunca cobrir texto */
+  .abertura__nota { padding-right: 72px; }
+  .fechamento__selos { padding-bottom: 64px; }
   .abertura__acao .tira { width: 100%; }
   .tira { white-space: normal; }
 
