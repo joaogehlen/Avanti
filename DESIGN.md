@@ -165,7 +165,7 @@ O mundo recusa explicitamente o template de SaaS escuro que o site substituiu: r
 - League Gothic em caixa alta para tudo que é "impresso"; Archivo para leitura.
 - Cantos retos em todo papel. Não existe raio de borda.
 - Grade de 12 colunas com cartazes sobrepostos e bordas rasgadas só na sobreposição.
-- Movimento pequeno que nunca esconde conteúdo, com um momento autoral no banner de grafite: a cada 7 segundos uma passada de spray atravessa a arte na diagonal, clareando o que toca (`.banner__spray`, `@keyframes repintar`). A faixa tem granulado para parecer tinta pulverizada, usa `mix-blend-mode: screen` e é uma camada decorativa: a arte nunca some e nada depende dela para aparecer.
+- Movimento pequeno que nunca esconde conteúdo, com um momento autoral no banner de grafite: ele é um muro que o visitante pinta. Em WebGL (three.js r160, `site/js/muro3d.js`) a arte da marca reage ao cursor ou ao dedo, acendendo no rastro do spray e secando devagar; sem interação, uma lata invisível pinta sozinha a cada 6,5s. A tinta vive num par de render targets de 512px que se revezam, com granulado no shader para parecer pulverizada. Camadas de reserva, nessa ordem: sem WebGL ou sem a biblioteca, a passada de spray em CSS (`.banner__spray`, `@keyframes repintar`, 7s); com `prefers-reduced-motion`, a arte estática. Nada de conteúdo depende de nenhuma delas.
 
 ## Colors
 

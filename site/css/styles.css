@@ -138,6 +138,17 @@ a { color: inherit; }
   background-size: cover; /* uma impressão só, sem emendas de repetição */
   background-position: 50% 40%;
 }
+/* muro pintável em WebGL: entra por cima da imagem quando o three.js carrega */
+.muro3d {
+  position: absolute;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.js-muro3d .abertura__banner { cursor: crosshair; }
+.js-muro3d .abertura__banner .banner__spray { display: none; }
+
 /* passada de spray: a cada ciclo a arte é repintada, da esquerda para a direita */
 .banner__spray {
   position: absolute;

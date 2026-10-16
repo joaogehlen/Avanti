@@ -160,6 +160,12 @@ o mesmo nome de arquivo e o site continua funcionando.
 - **"Uma arte. O kit inteiro."** Os botões Kit / Moletom / Caneca / Tirante dão zoom na
   mesma foto real (`moletom.jpg`), onde a arte da arara aparece nos três produtos. Sem
   JavaScript os botões somem e a foto aparece inteira.
+- **O banner da abertura é um muro que dá para pintar.** Em `site/js/muro3d.js`, o three.js
+  (WebGL) desenha a arte da marca e deixa o visitante passar o spray com o cursor ou o dedo:
+  o grafite acende no rastro e vai secando. Sem ninguém mexendo, uma lata invisível pinta
+  sozinha a cada 6,5 segundos. A biblioteca (670 KB) só é baixada depois que a página abre.
+  Se faltar WebGL, se o three.js não carregar ou se a pessoa pedir menos movimento, o banner
+  continua sendo a imagem com a passada de spray em CSS. Nada de conteúdo depende disso.
 - **Nenhum cartaz fica escondido esperando animação.** Uma revelação "colando" os
   cartazes na rolagem foi testada e removida: em alguns navegadores ela não disparava e
   metade da página ficava preta. O movimento que sobrou é pequeno e nunca esconde
@@ -240,9 +246,11 @@ Avanti/
 │   ├── js/config.js       ← contato, prazos, Instagram
 │   ├── js/main.js         ← tema, menu mobile, placeholders
 │   ├── js/instagram.js    ← posts fixados + carrossel
+│   ├── js/muro3d.js       ← muro pintável em WebGL (three.js)
 │   ├── img/               ← imagens otimizadas
 │   ├── img/instagram/     ← recortes quadrados dos posts
-│   └── vendor/swiper/     ← Swiper 11 (MIT)
+│   ├── vendor/swiper/     ← Swiper 11 (MIT)
+│   └── vendor/three/      ← three.js r160 (MIT)
 ├── briefing/              ← material original (fotos, logos, textos)
 ├── Main.dc.html           ← artboard desktop do canvas de design
 ├── Mobile.dc.html         ← artboard celular do canvas de design
